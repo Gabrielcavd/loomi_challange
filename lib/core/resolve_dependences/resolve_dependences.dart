@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-final ResolveDependence getDependence = _GetX();
+final ResolveDependence getDependency = _GetX();
 
 abstract class ResolveDependence {
   T get<T extends Object>(BuildContext context);

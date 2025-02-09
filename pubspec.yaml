@@ -8,10 +8,13 @@ environment:
 
 dependencies:
   dio: ^5.8.0+1
+  file_picker: ^8.3.2
   flutter:
     sdk: flutter
   flutter_native_splash: ^2.4.1
+  flutter_svg: ^2.0.17
   get: ^4.6.6
+  image_picker: ^1.1.2
   shared_preferences: ^2.3.3
 
 dev_dependencies:
@@ -28,3 +31,9 @@ flutter:
   uses-material-design: true
   assets:    
     - assets/images/
+    - assets/icons/
+  fonts:
+    - family: Epilogue
+      fonts:
+        - asset: assets/fonts/epilogue.ttf        
+          weight: 700        
