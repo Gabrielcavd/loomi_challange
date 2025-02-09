@@ -5,6 +5,24 @@ class AppTheme {
 
   const AppTheme(this.textTheme);
 
+  static const int _darkGreyPrimaryValue = 0xFF131418;
+
+// Degradê para Dark Grey Primary
+  static const MaterialColor darkGreyPrimary = MaterialColor(
+    _darkGreyPrimaryValue,
+    <int, Color>{
+      100: Color(0xFFE1E1E1),
+      200: Color(0xFFC3C3C3),
+      300: Color(0xFFA5A5A5),
+      400: Color(0xFF878787),
+      500: Color(_darkGreyPrimaryValue),
+      600: Color(0xFF101112),
+      700: Color(0xFF0D0E0F),
+      800: Color(0xFF0A0B0C),
+      900: Color(0xFF070809),
+    },
+  );
+
   static const int _purplePrimaryValue = 0xBC4CF1;
 
 // Degradê para Purple Primary
@@ -19,7 +37,7 @@ class AppTheme {
       600: Color(0xFF8D4CB1),
       700: Color(0xFF77409B),
       800: Color(0xFF613385),
-      900: Color(0xFF4B276F),
+      900: Color(0xFF351F43),
     },
   );
 
@@ -41,53 +59,35 @@ class AppTheme {
     },
   );
 
-  static const int _palleteGreyValue = 0xffe0e0e0;
+  static const int _palleteGreyValue = 0xFF616264;
 
   // Degradê para Grey
   static const MaterialColor palleteGrey = MaterialColor(
     _palleteGreyValue,
     <int, Color>{
-      100: Color(0xFFF5F5F5),
-      200: Color(0xFFE0E0E0),
-      300: Color(0xFFCCCCCC),
-      400: Color(0xFFB8B8B8),
+      100: Color(0xFFE1E1E2),
+      200: Color(0xFFC3C4C5),
+      300: Color(0xFFA5A6A7),
+      400: Color(0xFF87898A),
       500: Color(_palleteGreyValue),
-      600: Color(0xFF8E8E8E),
-      700: Color(0xFF6A6A6A),
-      800: Color(0xFF454545),
-      900: Color(0xFF212121),
+      600: Color(0xFF565758),
+      700: Color(0xFF4B4C4D),
+      800: Color(0xFF404142),
+      900: Color(0xFF353637),
     },
   );
 
-  static const int _palleteGrey2Value = 0xffa8db6f;
-
-  // Degradê para Grey2
-  static const MaterialColor palleteGrey2 = MaterialColor(
-    _palleteGrey2Value,
-    <int, Color>{
-      100: Color(0xFFE0F9B7),
-      200: Color(0xFFC5EC8F),
-      300: Color(0xFFA8DB6F),
-      400: Color(0xFF8DC655),
-      500: Color(_palleteGrey2Value),
-      600: Color(0xFF63A730),
-      700: Color(0xFF498C21),
-      800: Color(0xFF327115),
-      900: Color(0xFF225D0C),
-    },
-  );
-
-  static const int _palleteGrey3Value = 0xff656769;
+  static const int _palleteGrey2Value = 0xff6C6D7A;
 
   // Degradê para Grey3
-  static const MaterialColor palleteGrey3 = MaterialColor(
-    _palleteGrey3Value,
+  static const MaterialColor palleteGrey2 = MaterialColor(
+    _palleteGrey2Value,
     <int, Color>{
       100: Color(0xFFE0E0E0),
       200: Color(0xFFC0C0C0),
       300: Color(0xFFA0A0A0),
       400: Color(0xFF808080),
-      500: Color(_palleteGrey3Value),
+      500: Color(_palleteGrey2Value),
       600: Color(0xFF707070),
       700: Color(0xFF606060),
       800: Color(0xFF505050),
@@ -149,21 +149,21 @@ class AppTheme {
     },
   );
 
-  static const int _darkGreyValue = 0xff474d48;
+  static const int _darkGreyValue = 0xFF23252C;
 
-  // Degradê para Dark Grey
+// Degradê para Dark Grey
   static const MaterialColor darkGrey = MaterialColor(
     _darkGreyValue,
     <int, Color>{
-      100: Color(0xFFE1E3E1),
-      200: Color(0xFFC3C6C3),
-      300: Color(0xFFA5A9A6),
-      400: Color(0xFF878C88),
+      100: Color(0xFFE3E4E6),
+      200: Color(0xFFC7C9CC),
+      300: Color(0xFFABADB3),
+      400: Color(0xFF8F9199),
       500: Color(_darkGreyValue),
-      600: Color(0xFF6D736E),
-      700: Color(0xFF565B57),
-      800: Color(0xFF404441),
-      900: Color(0xFF2A2E2C),
+      600: Color(0xFF1F2127),
+      700: Color(0xFF1B1D22),
+      800: Color(0xFF17191D),
+      900: Color(0xFF131417),
     },
   );
 
@@ -294,7 +294,7 @@ class AppTheme {
       primary: purplePrimary.shade500,
       onPrimary: palleteWhite.shade500,
       secondary: palleteGrey.shade500,
-      surface: lightPurple.shade500,
+      surface: darkGreyPrimary.shade500,
       error: infoRed.shade700,
       onSecondary: palleteGrey.shade700,
       onSurface: palleteGrey.shade500,
@@ -310,11 +310,13 @@ class AppTheme {
       useMaterial3: true,
       brightness: colorScheme.brightness,
       colorScheme: colorScheme,
+      fontFamily: "Epilogue",
       textTheme: textTheme.apply(
         decorationColor: colorScheme.error,
         bodyColor: colorScheme.onSurface,
         displayColor: colorScheme.onSurface,
         decorationStyle: TextDecorationStyle.solid,
+        fontFamily: "Epilogue",
       ),
       scrollbarTheme: ScrollbarThemeData(
         thumbColor: WidgetStateProperty.all<Color>(

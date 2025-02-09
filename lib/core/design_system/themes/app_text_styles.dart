@@ -1,6 +1,4 @@
-import 'dart:ui';
-
-import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:loomi_challange/core/design_system/themes/app_theme.dart';
 
 class AppTextStyles {
@@ -15,8 +13,8 @@ class AppTextStyles {
     return TextStyle(
       fontWeight: FontWeight.w700,
       fontSize: fontSize ?? 24,
-      color: color ??
-          (Get.isDarkMode ? AppTheme.palleteWhite : AppTheme.darkBlack),
+      color: color ?? AppTheme.palleteWhite,
+      fontFamily: "Epilogue",
     );
   }
 
@@ -30,9 +28,9 @@ class AppTextStyles {
   static TextStyle headerSubtitleTextStyle({Color? color, double? fontSize}) {
     return TextStyle(
       fontWeight: FontWeight.w400,
-      color: color ??
-          (Get.isDarkMode ? AppTheme.palleteWhite : AppTheme.palleteGrey3),
+      color: color ?? AppTheme.palleteWhite,
       fontSize: fontSize ?? 16,
+      fontFamily: "Epilogue",
     );
   }
 
@@ -46,9 +44,9 @@ class AppTextStyles {
   static TextStyle labelTextStyle({double? fontSize, Color? color}) {
     return TextStyle(
       fontWeight: FontWeight.w700,
-      color:
-          color ?? (Get.isDarkMode ? AppTheme.palleteWhite : AppTheme.darkGrey),
+      color: color ?? AppTheme.palleteWhite,
       fontSize: fontSize ?? 14,
+      fontFamily: "Epilogue",
     );
   }
 
@@ -58,24 +56,25 @@ class AppTextStyles {
   ///
   /// color: [AppTheme.darkGrey]
   ///
-  /// fontSize:  12.0
+  /// fontSize:  14.0
   static TextStyle textStyle(
-      /* bool isDarkMode, */
       {double? fontSize,
+      double? letterSpacing,
       Color? color,
       FontWeight? fontWeight,
       TextDecoration? decoration,
       Paint? foreground,
       Color? decorationColor}) {
-    Color? colorText =
-        color ?? (Get.isDarkMode ? AppTheme.palleteWhite : AppTheme.darkGrey);
+    Color? colorText = color ?? AppTheme.darkGrey;
     if (foreground != null) {
       colorText = null;
     }
     return TextStyle(
         fontWeight: fontWeight ?? FontWeight.w400,
         color: colorText,
-        fontSize: fontSize ?? 12.0,
+        height: letterSpacing,
+        fontFamily: 'Epilogue',
+        fontSize: fontSize ?? 14.0,
         decoration: decoration,
         decorationColor: decorationColor,
         foreground: foreground);

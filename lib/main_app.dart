@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:loomi_challange/core/bindings/global_bindings.dart';
 import 'package:loomi_challange/core/design_system/themes/app_theme.dart';
+import 'package:loomi_challange/core/routes/app_pages.dart';
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
@@ -12,12 +13,9 @@ class MainApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialBinding: GlobalBindings(),
-      theme: theme.lightTheme(),
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+      theme: theme.darkTheme(),
+      initialRoute: AppPages.initial,
+      getPages: AppPages.routes,
     );
   }
 }
