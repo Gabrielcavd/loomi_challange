@@ -3,4 +3,6 @@ abstract class Routes {
   static const signUp = '/sign-up';
   static const completeSignUp = '/complete-sign-up';
   static const login = '/login';
+  static const forgotPassword = '/forgot-password';
+  static const forgotPasswordInstructions = '/forgot-password-instructions';
 }
