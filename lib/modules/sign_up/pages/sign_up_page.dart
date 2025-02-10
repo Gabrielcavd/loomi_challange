@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challange/core/components/app_button.dart';
@@ -8,6 +9,7 @@ import 'package:loomi_challange/core/design_system/themes/app_text_styles.dart';
 import 'package:loomi_challange/core/design_system/themes/app_theme.dart';
 import 'package:loomi_challange/core/design_system/themes/custom_icons.dart';
 import 'package:loomi_challange/core/resolve_dependences/resolve_dependences.dart';
+import 'package:loomi_challange/core/routes/app_routes.dart';
 import 'package:loomi_challange/core/validations/email_validation.dart';
 import 'package:loomi_challange/modules/sign_up/components/sign_up_page_divider.dart';
 import 'package:loomi_challange/modules/sign_up/controller/sign_up_controller.dart';
@@ -42,9 +44,14 @@ class SignUpPage extends StatelessWidget {
                       fontSize: 14,
                       color: AppTheme.darkGrey2,
                     ),
-                    children: <TextSpan>[
+                    children: [
                       TextSpan(
                         text: ' Sign in!',
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.pushReplacementNamed(
+                                context, Routes.login);
+                          },
                         style: AppTextStyles.textStyle(
                           fontWeight: FontWeight.w700,
                           color: AppTheme.lightPurple,
@@ -74,6 +81,7 @@ class SignUpPage extends StatelessWidget {
                 const SizedBox(height: 40),
                 AppTextField(
                   validator: (value) => validateEmail(value, "Invalid email"),
+                  keyboardType: TextInputType.emailAddress,
                   controller: controller.emailController,
                   obscureText: false,
                   hintText: "Email",
