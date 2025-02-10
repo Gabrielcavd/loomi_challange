@@ -25,7 +25,14 @@ dev_dependencies:
 
 
 flutter_native_splash:
-  background_image: assets/images/splash_screen.png
+  android: true
+  ios: true
+  color: "#131418"
+  image: assets/images/splash_screen.png
+  android_12: 
+    color: "#131418"
+    image: assets/images/splash_screen.png
+
 
 flutter:
   uses-material-design: true
