@@ -135,7 +135,7 @@ class SignUpPage extends StatelessWidget {
                     obscureText: controller.obscureConfirmPassword.value,
                     shineBorder:
                         controller.shineConfirmPasswordInputBorder.value,
-                    hintText: "Confirm yout Password",
+                    hintText: "Confirm your Password",
                     suffixIcon: InkWell(
                       onTap: () {
                         controller.obscureConfirmPassword.toggle();

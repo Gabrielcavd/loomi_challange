@@ -21,7 +21,6 @@ class SignUpRepository {
 
   Future<void> completeSignUp(String userName, String? photoURL) async {
     try {
-      //TODO: Implement the logic to navigate to the next screen
       await _firebaseAuthService.updateDisplayName(userName);
       if (photoURL != null) {
         await _firebaseAuthService.updatePhotoURL(photoURL);

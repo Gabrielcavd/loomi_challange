@@ -14,6 +14,12 @@ class CustomIcons {
   static Widget gallery({Color? color, double? width, double? height}) =>
       SvgPicture.asset("assets/icons/gallery.svg",
           width: width, height: height, colorFilter: _getColorFilter(color));
+  static Widget trash({Color? color, double? width, double? height}) =>
+      SvgPicture.asset("assets/icons/trash.svg",
+          width: width, height: height, colorFilter: _getColorFilter(color));
+  static Widget shield({Color? color, double? width, double? height}) =>
+      SvgPicture.asset("assets/icons/shield.svg",
+          width: width, height: height, colorFilter: _getColorFilter(color));
 
   static ColorFilter? _getColorFilter(Color? color) =>
       color != null ? ColorFilter.mode(color, BlendMode.srcIn) : null;

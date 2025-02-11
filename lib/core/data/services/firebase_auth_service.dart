@@ -58,4 +58,12 @@ class FirebaseAuthService extends GetxController {
       rethrow;
     }
   }
+
+  Future<void> signOut() async {
+    try {
+      await firebaseAuth.signOut();
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

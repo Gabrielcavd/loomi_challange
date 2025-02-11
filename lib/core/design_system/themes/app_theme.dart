@@ -91,7 +91,7 @@ class AppTheme {
       600: Color(0xFF707070),
       700: Color(0xFF606060),
       800: Color(0xFF505050),
-      900: Color(0xFF404040),
+      900: Color(0xFF30303B),
     },
   );
 
@@ -185,24 +185,6 @@ class AppTheme {
     },
   );
 
-  static const int _darkGrey3Value = 0xffa3a6a3;
-
-  // Degradê para Dark Grey3
-  static const MaterialColor darkGrey3 = MaterialColor(
-    _darkGrey3Value,
-    <int, Color>{
-      100: Color(0xFFF2F2F2),
-      200: Color(0xFFE4E4E4),
-      300: Color(0xFFD6D6D6),
-      400: Color(0xFFC8C8C8),
-      500: Color(_darkGrey3Value),
-      600: Color(0xFFBABABA),
-      700: Color(0xFFACACAC),
-      800: Color(0xFF9E9E9E),
-      900: Color(0xFF909090),
-    },
-  );
-
   static const int _infoRedValue = 0xffE60000;
 
   // Degradê para Red
@@ -221,66 +203,12 @@ class AppTheme {
     },
   );
 
-  static const int _lightColor1Value = 0xffd1d3d1;
-
-  // Degradê para Light Color1
-  static const MaterialColor lightColor1 = MaterialColor(
-    _lightColor1Value,
-    <int, Color>{
-      100: Color(0xFFF2F4F2),
-      200: Color(0xFFE5E7E5),
-      300: Color(0xFFD9DAD9),
-      400: Color(0xFFCCCCCC),
-      500: Color(_lightColor1Value),
-      600: Color(0xFFB0B3B0),
-      700: Color(0xFF999C99),
-      800: Color(0xFF838483),
-      900: Color(0xFF6C6C6C),
-    },
-  );
-
-  static const int _lightColor2Value = 0xffe8e9e9;
-
-  // Degradê para Light Color2
-  static const MaterialColor lightColor2 = MaterialColor(
-    _lightColor2Value,
-    <int, Color>{
-      100: Color(0xFFF8F9F9),
-      200: Color(0xFFF1F3F3),
-      300: Color(0xFFE9ECEB),
-      400: Color(0xFFD1D3D1),
-      500: Color(_lightColor2Value),
-      600: Color(0xFFBABBBB),
-      700: Color(0xFFA3A4A3),
-      800: Color(0xFF8B8D8B),
-      900: Color(0xFF747674),
-    },
-  );
-
-  static const int _lightColor5Value = 0xfffbfbfb;
-
-  // Degradê para Light Color5
-  static const MaterialColor lightColor5 = MaterialColor(
-    _lightColor5Value,
-    <int, Color>{
-      100: Color(0xFFFFFFFF),
-      200: Color(0xFFFDFDFD),
-      300: Color(0xFFFAFAFA),
-      400: Color(0xFFF7F7F7),
-      500: Color(_lightColor5Value),
-      600: Color(0xFFEAEAEA),
-      700: Color(0xFFD6D6D6),
-      800: Color(0xFFC2C2C2),
-      900: Color(0xFFAEAEAE),
-    },
-  );
-
   static ColorScheme lightScheme() {
     return ColorScheme(
       primary: purplePrimary,
       onPrimary: purplePrimary,
       secondary: palleteGrey.shade500,
-      surface: lightColor5,
+      surface: palleteWhite.shade600,
       error: infoRed.shade500,
       onSecondary: darkBlack.shade500,
       onSurface: darkBlack.shade900,
@@ -307,33 +235,34 @@ class AppTheme {
   ThemeData darkTheme() => theme(darkScheme());
 
   ThemeData theme(ColorScheme colorScheme) => ThemeData(
-      useMaterial3: true,
-      brightness: colorScheme.brightness,
-      colorScheme: colorScheme,
-      fontFamily: "Epilogue",
-      textTheme: textTheme.apply(
-        decorationColor: colorScheme.error,
-        bodyColor: colorScheme.onSurface,
-        displayColor: colorScheme.onSurface,
-        decorationStyle: TextDecorationStyle.solid,
+        useMaterial3: true,
+        brightness: colorScheme.brightness,
+        colorScheme: colorScheme,
         fontFamily: "Epilogue",
-      ),
-      scrollbarTheme: ScrollbarThemeData(
-        thumbColor: WidgetStateProperty.all<Color>(
-            purplePrimary[700]!), // Thumb transparente
-        trackColor:
-            WidgetStateProperty.all<Color>(purplePrimary), // Cor da trilha
-        radius: const Radius.circular(10), // Bordas arredondadas
-        thickness: WidgetStateProperty.all<double>(8), // Espessura
-      ),
-      scaffoldBackgroundColor: colorScheme.surface,
-      canvasColor: colorScheme.surface,
-      cardTheme: CardTheme(
-        color: colorScheme.surface,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4.0),
-          side: BorderSide(color: colorScheme.onPrimary, width: 1),
+        textTheme: textTheme.apply(
+          decorationColor: colorScheme.error,
+          bodyColor: colorScheme.onSurface,
+          displayColor: colorScheme.onSurface,
+          decorationStyle: TextDecorationStyle.solid,
+          fontFamily: "Epilogue",
         ),
-      ),
-      appBarTheme: const AppBarTheme(backgroundColor: lightColor5));
+        scrollbarTheme: ScrollbarThemeData(
+          thumbColor: WidgetStateProperty.all<Color>(
+              purplePrimary[700]!), // Thumb transparente
+          trackColor:
+              WidgetStateProperty.all<Color>(purplePrimary), // Cor da trilha
+          radius: const Radius.circular(10), // Bordas arredondadas
+          thickness: WidgetStateProperty.all<double>(8), // Espessura
+        ),
+        scaffoldBackgroundColor: colorScheme.surface,
+        canvasColor: colorScheme.surface,
+        cardTheme: CardTheme(
+          color: colorScheme.surface,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4.0),
+            side: BorderSide(color: colorScheme.onPrimary, width: 1),
+          ),
+        ),
+        appBarTheme: AppBarTheme(backgroundColor: palleteWhite.shade600),
+      );
 }
