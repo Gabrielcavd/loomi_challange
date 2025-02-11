@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:loomi_challange/core/components/page_base.dart';
+import 'package:loomi_challange/core/design_system/themes/app_theme.dart';
 import 'package:loomi_challange/core/resolve_dependences/resolve_dependences.dart';
 import 'package:loomi_challange/core/routes/app_routes.dart';
 import 'package:loomi_challange/modules/home/controllers/home_controller.dart';
@@ -34,9 +35,15 @@ class HomePage extends StatelessWidget {
                     },
                     child: CircleAvatar(
                       radius: 20,
-                      backgroundImage: FileImage(
-                        File(controller.user!.photoURL!),
-                      ),
+                      backgroundColor: AppTheme.palleteGrey,
+                      backgroundImage: controller.user!.photoURL != null
+                          ? FileImage(
+                              File(controller.user!.photoURL!),
+                            )
+                          : null,
+                      child: controller.user!.photoURL == null
+                          ? const Icon(Icons.person)
+                          : null,
                     ),
                   ),
                 ],

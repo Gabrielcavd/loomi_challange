@@ -17,6 +17,12 @@ class ProfileController extends GetxController {
     user = _firebaseAuthService.firebaseAuth.currentUser;
   }
 
+  Future<void> getUser() async {
+    final token =
+        await _firebaseAuthService.firebaseAuth.currentUser!.getIdToken();
+    debugPrint(token);
+  }
+
   Future<void> signOut(BuildContext context) async {
     try {
       await _firebaseAuthService.firebaseAuth.signOut();

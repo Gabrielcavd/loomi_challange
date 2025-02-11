@@ -52,7 +52,9 @@ class ProfilePage extends StatelessWidget {
               ),
               SizedBox(height: 30),
               TileOption(
-                onTap: () {},
+                onTap: () {
+                  controller.getUser();
+                },
                 title: "Delete my account",
                 icon: CustomIcons.trash(
                   height: 18,
