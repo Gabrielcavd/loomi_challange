@@ -14,7 +14,7 @@ import 'package:loomi_challange/core/design_system/themes/custom_icons.dart';
 import 'package:loomi_challange/core/resolve_dependences/resolve_dependences.dart';
 import 'package:loomi_challange/core/routes/app_routes.dart';
 import 'package:loomi_challange/core/validations/email_validation.dart';
-import 'package:loomi_challange/modules/login/controller/login_controller.dart';
+import 'package:loomi_challange/modules/login/controllers/login_controller.dart';
 import 'package:loomi_challange/modules/sign_up/components/sign_up_page_divider.dart';
 
 class LoginPage extends StatelessWidget {
@@ -95,7 +95,12 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(height: 50),
                 SignUpPageDivider(),
                 const SizedBox(height: 20),
-                SocialLoginButtons(),
+                SocialLoginButtons(
+                  onTapGoogle: () {
+                    controller.handleGoogleLogin(context);
+                  },
+                  onTapApple: () {},
+                ),
                 const SizedBox(height: 30),
                 RichText(
                   text: TextSpan(

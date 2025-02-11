@@ -5,7 +5,7 @@ import 'package:loomi_challange/core/components/page_base.dart';
 import 'package:loomi_challange/core/components/page_header.dart';
 import 'package:loomi_challange/core/resolve_dependences/resolve_dependences.dart';
 import 'package:loomi_challange/core/validations/email_validation.dart';
-import 'package:loomi_challange/modules/login/controller/forgot_password_controller.dart';
+import 'package:loomi_challange/modules/login/controllers/forgot_password_controller.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({super.key});
