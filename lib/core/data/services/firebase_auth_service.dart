@@ -46,6 +46,7 @@ class FirebaseAuthService extends GetxController {
   Future<void> updateDisplayName(String displayName) async {
     try {
       await firebaseAuth.currentUser!.updateDisplayName(displayName.trim());
+      await firebaseAuth.currentUser!.reload();
     } catch (e) {
       rethrow;
     }
@@ -54,6 +55,7 @@ class FirebaseAuthService extends GetxController {
   Future<void> updatePhotoURL(String photoURL) async {
     try {
       await firebaseAuth.currentUser!.updatePhotoURL(photoURL);
+      await firebaseAuth.currentUser!.reload();
     } catch (e) {
       rethrow;
     }
@@ -62,6 +64,14 @@ class FirebaseAuthService extends GetxController {
   Future<void> signOut() async {
     try {
       await firebaseAuth.signOut();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> deleteAccount() async {
+    try {
+      await firebaseAuth.currentUser!.delete();
     } catch (e) {
       rethrow;
     }

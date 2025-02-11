@@ -19,19 +19,11 @@ class ForgotPasswordPage extends StatelessWidget {
       child: Form(
         key: controller.formKeyForgotPassword,
         child: PageBase(
-          bottomNavigationBar: Padding(
-            padding: const EdgeInsets.only(bottom: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ActionButtons(
-                    onTapTopButton: () {
-                      controller.handleForgotPassword(context);
-                    },
-                    topButtonText: "Send reset instructions"),
-              ],
-            ),
-          ),
+          bottomNavigationBar: ActionButtons(
+              onTapTopButton: () {
+                controller.handleForgotPassword(context);
+              },
+              topButtonText: "Send reset instructions"),
           body: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 35),
             child: Column(

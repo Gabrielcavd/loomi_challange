@@ -7,6 +7,7 @@ import 'package:loomi_challange/modules/login/pages/forgot_password_instructions
 import 'package:loomi_challange/modules/login/pages/forgot_password_page.dart';
 import 'package:loomi_challange/modules/login/pages/login_page.dart';
 import 'package:loomi_challange/modules/profile/bindings/profile_bindings.dart';
+import 'package:loomi_challange/modules/profile/pages/edit_profile_page.dart';
 import 'package:loomi_challange/modules/profile/pages/profile_page.dart';
 import 'package:loomi_challange/modules/sign_up/bindings/sign_up_bindings.dart';
 import 'package:loomi_challange/modules/sign_up/pages/complete_sign_up_page.dart';
@@ -53,9 +54,14 @@ class AppPages {
       page: () => const HomePage(),
     ),
     GetPage(
-      name: Routes.profile,
-      binding: ProfileBindings(),
-      page: () => const ProfilePage(),
-    ),
+        name: Routes.profile,
+        binding: ProfileBindings(),
+        page: () => const ProfilePage(),
+        children: [
+          GetPage(
+            name: Routes.editProfile,
+            page: () => const EditProfilePage(),
+          ),
+        ]),
   ];
 }

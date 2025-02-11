@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:loomi_challange/core/design_system/themes/app_text_styles.dart';
 import 'package:loomi_challange/core/design_system/themes/app_theme.dart';
@@ -15,7 +13,7 @@ class PickImageBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
@@ -31,12 +29,12 @@ class PickImageBottomSheet extends StatelessWidget {
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () => Navigator.pop(context),
-                child: Icon(
+                child: const Icon(
                   Icons.arrow_back_ios,
                   color: AppTheme.lightPurple,
                 ),
               ),
-              Text(
+              const Text(
                 "CHOOSE IMAGE",
                 style: TextStyle(
                   color: AppTheme.palleteWhite,
@@ -44,10 +42,10 @@ class PickImageBottomSheet extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              SizedBox(width: 20),
+              const SizedBox(width: 20),
             ],
           ),
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -64,7 +62,7 @@ class PickImageBottomSheet extends StatelessWidget {
                 borderColor: AppTheme.palleteGrey2,
                 title: "Choose from gallery",
                 titleWidth: 95,
-                icon: Icon(
+                icon: const Icon(
                   Icons.photo_rounded,
                   color: AppTheme.palleteGrey2,
                   size: 28,

@@ -13,20 +13,12 @@ class ForgotPasswordInstructionsPage extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: PageBase(
-          bottomNavigationBar: Padding(
-            padding: const EdgeInsets.only(bottom: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AppButton(
-                  onPressed: () {
-                    Navigator.popUntil(context, (route) => route.isFirst);
-                  },
-                  width: 205,
-                  text: "Login",
-                ),
-              ],
-            ),
+          bottomNavigationBar: AppButton(
+            onPressed: () {
+              Navigator.popUntil(context, (route) => route.isFirst);
+            },
+            width: 205,
+            text: "Login",
           ),
           body: const SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 35),

@@ -36,9 +36,14 @@ class UserProfile extends StatelessWidget {
               "Hello, ",
               style: AppTextStyles.textStyle(color: AppTheme.palleteWhite),
             ),
-            Text(
-              displayName!.isEmpty ? "User" : displayName!,
-              style: AppTextStyles.headerTitleTextStyle(fontSize: 26),
+            SizedBox(
+              width: 230,
+              child: Text(
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                displayName!.isEmpty ? "User" : displayName!,
+                style: AppTextStyles.headerTitleTextStyle(fontSize: 26),
+              ),
             ),
           ],
         )

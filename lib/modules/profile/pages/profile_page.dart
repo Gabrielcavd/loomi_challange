@@ -1,14 +1,12 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:loomi_challange/core/components/app_button.dart';
+import 'package:get/get.dart';
 import 'package:loomi_challange/core/components/page_base.dart';
 import 'package:loomi_challange/core/design_system/themes/app_button_styles.dart';
 import 'package:loomi_challange/core/design_system/themes/app_text_styles.dart';
 import 'package:loomi_challange/core/design_system/themes/app_theme.dart';
 import 'package:loomi_challange/core/design_system/themes/custom_icons.dart';
+import 'package:loomi_challange/core/routes/app_routes.dart';
+import 'package:loomi_challange/modules/profile/components/warning_bottom_sheet.dart';
 import 'package:loomi_challange/modules/profile/components/history_session.dart';
 import 'package:loomi_challange/modules/profile/components/subscriptions_session.dart';
 import 'package:loomi_challange/modules/profile/components/tile_option.dart';
@@ -17,9 +15,14 @@ import 'package:loomi_challange/modules/profile/controllers/profile_controller.d
 
 import '../../../core/resolve_dependences/resolve_dependences.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     final ProfileController controller =
@@ -35,9 +38,17 @@ class ProfilePage extends StatelessWidget {
                   borderColor: AppTheme.purplePrimary.shade900,
                   borderRadius: 20),
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(
+                        context, "${Routes.profile}${Routes.editProfile}")
+                    .then(
+                  (_) {
+                    setState(() {
+                      controller.onInit();
+                    });
+                  },
+                );
               },
-              child: Text("Edit Profile"),
+              child: const Text("Edit Profile"),
             ),
           ),
         ],
@@ -50,10 +61,29 @@ class ProfilePage extends StatelessWidget {
                 photoURL: controller.user?.photoURL,
                 displayName: controller.user?.displayName,
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               TileOption(
                 onTap: () {
-                  controller.getUser();
+                  showModalBottomSheet(
+                    context: context,
+                    isDismissible: false,
+                    builder: (context) {
+                      return Obx(
+                        () => WarningBottomSheet(
+                          onTapConfirmButton: () async {
+                            await controller.deleteAccount(context);
+                          },
+                          titleWarning:
+                              "Are you sure you want to delete your account?",
+                          descriptionWarning:
+                              "This action is irreversible and all of your data will be permanently deleted. If you're having any issues with our app, we'd love to help you resolve them.",
+                          buttonText: "Delete Account",
+                          isButtonRequesting:
+                              controller.state.value == ProfileState.loading,
+                        ),
+                      );
+                    },
+                  );
                 },
                 title: "Delete my account",
                 icon: CustomIcons.trash(
@@ -61,7 +91,7 @@ class ProfilePage extends StatelessWidget {
                   width: 18,
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TileOption(
                 onTap: () {},
                 title: "Change Password",
@@ -70,11 +100,11 @@ class ProfilePage extends StatelessWidget {
                   width: 18,
                 ),
               ),
-              SizedBox(height: 30),
-              SubscriptionsSession(),
-              SizedBox(height: 30),
-              HistorySession(),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
+              const SubscriptionsSession(),
+              const SizedBox(height: 30),
+              const HistorySession(),
+              const SizedBox(height: 30),
               Center(
                 child: OutlinedButton(
                   onPressed: () {

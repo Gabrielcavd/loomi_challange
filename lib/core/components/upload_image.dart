@@ -9,43 +9,23 @@ import 'package:loomi_challange/core/design_system/themes/custom_icons.dart';
 
 class UploadImageComponent extends StatelessWidget {
   const UploadImageComponent(
-      {super.key, required this.onTap, required this.imagePath});
+      {super.key,
+      required this.onTap,
+      required this.imagePath,
+      this.mainAxisAlignment});
   final void Function() onTap;
   final String? imagePath;
+  final MainAxisAlignment? mainAxisAlignment;
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
       children: [
         imagePath != null
-            ? Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(60),
-                    child: Image.file(
-                      File(imagePath!),
-                      width: 116,
-                      height: 116,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Positioned(
-                    right: -10,
-                    bottom: -10,
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: onTap,
-                      child: CircleAvatar(
-                        radius: 24,
-                        backgroundColor: AppTheme.palleteGrey4.shade800,
-                        child: CustomIcons.camera(),
-                      ),
-                    ),
-                  )
-                ],
+            ? ChangeImageComponent(
+                onTap: onTap,
+                imagePath: imagePath,
               )
             : InkWell(
                 splashColor: Colors.transparent,
@@ -87,6 +67,53 @@ class UploadImageComponent extends StatelessWidget {
             ),
           ),
         ),
+      ],
+    );
+  }
+}
+
+class ChangeImageComponent extends StatelessWidget {
+  const ChangeImageComponent({super.key, required this.onTap, this.imagePath});
+  final void Function() onTap;
+  final String? imagePath;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(60),
+          child: imagePath!.isNotEmpty
+              ? Image.file(
+                  File(imagePath!),
+                  width: 116,
+                  height: 116,
+                  fit: BoxFit.cover,
+                )
+              : CircleAvatar(
+                  radius: 50,
+                  backgroundColor: AppTheme.palleteGrey,
+                  child: Icon(
+                    Icons.person,
+                    size: 58,
+                  ),
+                ),
+        ),
+        Positioned(
+          right: -10,
+          bottom: -10,
+          child: InkWell(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: onTap,
+            child: CircleAvatar(
+              radius: 24,
+              backgroundColor: AppTheme.palleteGrey4.shade800,
+              child: CustomIcons.camera(),
+            ),
+          ),
+        )
       ],
     );
   }
