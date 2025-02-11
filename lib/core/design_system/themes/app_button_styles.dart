@@ -18,18 +18,19 @@ class AppButtonStyles {
     );
   }
 
-  static outlinedButtonStyle(BuildContext context, double width) {
+  static outlinedButtonStyle(BuildContext context, double width,
+      {Color? borderColor, double? borderRadius}) {
     return OutlinedButton.styleFrom(
       elevation: 0,
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       foregroundColor: AppTheme.lightPurple,
       backgroundColor: AppTheme.darkGreyPrimary,
       minimumSize: Size(width, 42),
-      side: const BorderSide(
-        color: AppTheme.darkGreyPrimary,
+      side: BorderSide(
+        color: borderColor ?? Colors.transparent,
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(borderRadius ?? 8),
       ),
     );
   }

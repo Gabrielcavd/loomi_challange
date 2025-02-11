@@ -24,7 +24,6 @@ class MainApp extends StatelessWidget {
       onReady: () {
         final firebaseService = getDependency.get<FirebaseAuthService>(context);
         if (firebaseService.firebaseAuth.currentUser != null) {
-          print("USER LOGGED");
           navigator?.pushNamedAndRemoveUntil(
             Routes.home,
             ModalRoute.withName(Routes.home),

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:loomi_challange/core/components/page_base.dart';
 import 'package:loomi_challange/core/resolve_dependences/resolve_dependences.dart';
+import 'package:loomi_challange/core/routes/app_routes.dart';
 import 'package:loomi_challange/modules/home/controllers/home_controller.dart';
 
 class HomePage extends StatelessWidget {
@@ -28,7 +29,9 @@ class HomePage extends StatelessWidget {
                     width: 32,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.profile);
+                    },
                     child: CircleAvatar(
                       radius: 20,
                       backgroundImage: FileImage(
