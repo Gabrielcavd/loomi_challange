@@ -72,7 +72,6 @@ class DioHttpClient implements BaseHttpClient {
   }) async {
     final Response response;
     var data = json.encode(body);
-    print(data);
     try {
       response = await dio.request(
         url,

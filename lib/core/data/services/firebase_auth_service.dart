@@ -25,7 +25,6 @@ class FirebaseAuthService extends GetxController {
         idToken: googleAuth?.idToken,
       );
       final user = await firebaseAuth.signInWithCredential(credential);
-      print(firebaseAuth.currentUser!.email);
       return user;
     } catch (e) {
       rethrow;

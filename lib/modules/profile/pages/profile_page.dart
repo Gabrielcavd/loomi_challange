@@ -101,7 +101,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               const SizedBox(height: 30),
-              const SubscriptionsSession(),
+              SubscriptionsSession(
+                onTap: () {
+                  Navigator.pushNamed(
+                      context, "${Routes.profile}${Routes.seeSubscription}");
+                },
+              ),
               const SizedBox(height: 30),
               const HistorySession(),
               const SizedBox(height: 30),
