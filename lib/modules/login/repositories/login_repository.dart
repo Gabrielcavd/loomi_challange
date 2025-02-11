@@ -16,4 +16,13 @@ class LoginRepository {
       rethrow;
     }
   }
+
+  Future<UserCredential?> loginWithGoogle() async {
+    try {
+      final userLogged = await _firebaseAuthService.googleSignIn();
+      return userLogged;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

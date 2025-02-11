@@ -16,6 +16,7 @@ dependencies:
   flutter_native_splash: ^2.4.1
   flutter_svg: ^2.0.17
   get: ^4.6.6
+  google_sign_in: ^6.2.2
   image_picker: ^1.1.2
   shared_preferences: ^2.3.3
 

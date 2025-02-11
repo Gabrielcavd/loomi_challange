@@ -12,6 +12,7 @@ class LoginController extends GetxController {
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
+  final loginStateRequest = LoginStateRequest.done.obs;
   final obscurePassword = true.obs;
   final shinePasswordInputBorder = true.obs;
 
@@ -32,4 +33,20 @@ class LoginController extends GetxController {
       }
     }
   }
+
+  void handleGoogleLogin(BuildContext context) async {
+    try {
+      final user = await _loginRepository.loginWithGoogle();
+    } catch (e) {
+      String error = "";
+      if (e is FirebaseAuthException) {
+        error = e.code;
+      }
+      if (context.mounted) {
+        getAppSnackBar(handleFirebaseExceptions(error), context);
+      }
+    }
+  }
 }
+
+enum LoginStateRequest { requesting, done, error }

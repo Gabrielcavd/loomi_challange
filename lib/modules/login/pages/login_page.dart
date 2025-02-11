@@ -95,7 +95,12 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(height: 50),
                 SignUpPageDivider(),
                 const SizedBox(height: 20),
-                SocialLoginButtons(),
+                SocialLoginButtons(
+                  onTapGoogle: () {
+                    controller.handleGoogleLogin(context);
+                  },
+                  onTapApple: () {},
+                ),
                 const SizedBox(height: 30),
                 RichText(
                   text: TextSpan(
