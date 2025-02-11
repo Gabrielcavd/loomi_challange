@@ -203,7 +203,7 @@ class AppTheme {
     },
   );
 
-  static const int _infoRedValue = 0xff990000;
+  static const int _infoRedValue = 0xffE60000;
 
   // Degradê para Red
   static const MaterialColor infoRed = MaterialColor(

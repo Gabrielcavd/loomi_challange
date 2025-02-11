@@ -144,12 +144,16 @@ class SignUpPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                AppButton(
-                  onPressed: () {
-                    controller.handleSignUp(context);
-                  },
-                  width: 205,
-                  text: "Create Account",
+                Obx(
+                  () => AppButton(
+                    isRequesting: controller.signUpStateRequest.value ==
+                        SignUpStateRequest.requesting,
+                    onPressed: () {
+                      controller.handleSignUp(context);
+                    },
+                    width: 205,
+                    text: "Create Account",
+                  ),
                 ),
               ],
             ),

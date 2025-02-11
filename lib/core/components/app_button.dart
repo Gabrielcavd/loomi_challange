@@ -8,10 +8,12 @@ class AppButton extends StatelessWidget {
       {super.key,
       required this.onPressed,
       required this.width,
-      required this.text});
+      required this.text,
+      this.isRequesting = false});
   final void Function() onPressed;
   final double width;
   final String text;
+  final bool isRequesting;
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +29,15 @@ class AppButton extends StatelessWidget {
         ],
       ),
       child: ElevatedButton(
-        onPressed: onPressed,
+        onPressed: isRequesting ? null : onPressed,
         style: AppButtonStyles.elevatedButtonStyle(context, width),
-        child: Text(
-          text,
-          style: AppTextStyles.textStyle(
-              color: AppTheme.lightPurple, fontWeight: FontWeight.w600),
-        ),
+        child: isRequesting
+            ? const CircularProgressIndicator(color: AppTheme.lightPurple)
+            : Text(
+                text,
+                style: AppTextStyles.textStyle(
+                    color: AppTheme.lightPurple, fontWeight: FontWeight.w600),
+              ),
       ),
     );
   }
