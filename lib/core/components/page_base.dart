@@ -19,7 +19,17 @@ class PageBase extends StatelessWidget {
       appBar:
           enableAppBar == false ? null : DefaultAppBar(actions: actions ?? []),
       body: body,
-      bottomNavigationBar: bottomNavigationBar,
+      bottomNavigationBar: bottomNavigationBar != null
+          ? Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: bottomNavigationBar != null
+                    ? [bottomNavigationBar!]
+                    : [Container()],
+              ),
+            )
+          : null,
     );
   }
 }

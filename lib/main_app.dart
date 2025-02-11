@@ -1,9 +1,7 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challange/core/bindings/global_bindings.dart';
 import 'package:loomi_challange/core/data/services/firebase_auth_service.dart';
-import 'package:loomi_challange/core/data/services/session_service.dart';
 import 'package:loomi_challange/core/design_system/themes/app_theme.dart';
 import 'package:loomi_challange/core/resolve_dependences/resolve_dependences.dart';
 import 'package:loomi_challange/core/routes/app_pages.dart';
