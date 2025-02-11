@@ -9,6 +9,7 @@ import 'package:loomi_challange/modules/login/pages/login_page.dart';
 import 'package:loomi_challange/modules/profile/bindings/profile_bindings.dart';
 import 'package:loomi_challange/modules/profile/pages/edit_profile_page.dart';
 import 'package:loomi_challange/modules/profile/pages/profile_page.dart';
+import 'package:loomi_challange/modules/profile/pages/subscription_page.dart';
 import 'package:loomi_challange/modules/sign_up/bindings/sign_up_bindings.dart';
 import 'package:loomi_challange/modules/sign_up/pages/complete_sign_up_page.dart';
 import 'package:loomi_challange/modules/sign_up/pages/sign_up_page.dart';
@@ -61,6 +62,10 @@ class AppPages {
           GetPage(
             name: Routes.editProfile,
             page: () => const EditProfilePage(),
+          ),
+          GetPage(
+            name: Routes.seeSubscription,
+            page: () => const SubscriptionPage(),
           ),
         ]),
   ];

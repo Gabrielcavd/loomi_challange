@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -42,7 +40,7 @@ class UploadImageComponent extends StatelessWidget {
                   child: CustomIcons.camera(),
                 ),
               ),
-        SizedBox(width: 15),
+        const SizedBox(width: 15),
         SizedBox(
           width: 92,
           child: RichText(
@@ -91,7 +89,7 @@ class ChangeImageComponent extends StatelessWidget {
                   height: 116,
                   fit: BoxFit.cover,
                 )
-              : CircleAvatar(
+              : const CircleAvatar(
                   radius: 50,
                   backgroundColor: AppTheme.palleteGrey,
                   child: Icon(

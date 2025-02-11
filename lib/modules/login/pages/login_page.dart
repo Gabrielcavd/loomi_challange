@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,7 +32,7 @@ class LoginPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                PageHeader(
+                const PageHeader(
                     title: "Welcome Back", subTitle: "Look who is here!"),
                 AppTextField(
                   validator: (value) => validateEmail(value, "Invalid email"),
@@ -97,7 +95,7 @@ class LoginPage extends StatelessWidget {
                       text: "Login"),
                 ),
                 const SizedBox(height: 50),
-                SignUpPageDivider(),
+                const SignUpPageDivider(),
                 const SizedBox(height: 20),
                 SocialLoginButtons(
                   onTapGoogle: () {

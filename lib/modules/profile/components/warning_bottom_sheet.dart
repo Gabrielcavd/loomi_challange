@@ -27,7 +27,7 @@ class WarningBottomSheet extends StatelessWidget {
           topRight: Radius.circular(20),
         ),
       ),
-      height: 340,
+      height: 360,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

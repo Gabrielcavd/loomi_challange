@@ -6,18 +6,21 @@ class PageBase extends StatelessWidget {
   final Widget? bottomNavigationBar;
   final List<Widget>? actions;
   final bool? enableAppBar;
+  final String? title;
   const PageBase(
       {super.key,
       this.body,
       this.bottomNavigationBar,
       this.actions,
-      this.enableAppBar = false});
+      this.enableAppBar = false,
+      this.title});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          enableAppBar == false ? null : DefaultAppBar(actions: actions ?? []),
+      appBar: enableAppBar == false
+          ? null
+          : DefaultAppBar(actions: actions ?? [], title: title),
       body: body,
       bottomNavigationBar: bottomNavigationBar != null
           ? Padding(
