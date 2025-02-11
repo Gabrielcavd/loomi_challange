@@ -70,11 +70,15 @@ class CompleteSignUpPage extends StatelessWidget {
                   hintText: "Your name",
                 ),
                 const SizedBox(height: 50),
-                ActionButtons(
-                  onTapTopButton: () {
-                    controller.handleCompleteSignUp(context);
-                  },
-                  topButtonText: "Continue",
+                Obx(
+                  () => ActionButtons(
+                    isRequesting: controller.signUpStateRequest.value ==
+                        SignUpStateRequest.requesting,
+                    onTapTopButton: () {
+                      controller.handleCompleteSignUp(context);
+                    },
+                    topButtonText: "Continue",
+                  ),
                 ),
               ],
             ),

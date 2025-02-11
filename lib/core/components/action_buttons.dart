@@ -4,9 +4,13 @@ import 'package:loomi_challange/core/design_system/themes/app_button_styles.dart
 
 class ActionButtons extends StatelessWidget {
   const ActionButtons(
-      {super.key, required this.onTapTopButton, required this.topButtonText});
+      {super.key,
+      required this.onTapTopButton,
+      required this.topButtonText,
+      this.isRequesting = false});
   final void Function() onTapTopButton;
   final String topButtonText;
+  final bool isRequesting;
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +18,7 @@ class ActionButtons extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         AppButton(
+          isRequesting: isRequesting,
           onPressed: onTapTopButton,
           width: 205,
           text: topButtonText,

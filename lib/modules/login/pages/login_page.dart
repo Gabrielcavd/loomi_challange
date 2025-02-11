@@ -86,12 +86,16 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 50),
-                AppButton(
-                    onPressed: () {
-                      controller.handleLogin(context);
-                    },
-                    width: 205,
-                    text: "Login"),
+                Obx(
+                  () => AppButton(
+                      isRequesting: controller.loginStateRequest.value ==
+                          LoginStateRequest.requesting,
+                      onPressed: () {
+                        controller.handleLogin(context);
+                      },
+                      width: 205,
+                      text: "Login"),
+                ),
                 const SizedBox(height: 50),
                 SignUpPageDivider(),
                 const SizedBox(height: 20),

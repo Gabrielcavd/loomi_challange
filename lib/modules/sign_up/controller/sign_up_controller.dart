@@ -59,8 +59,13 @@ class SignUpController extends GetxController {
   void handleCompleteSignUp(BuildContext context) async {
     if (completeSignUpFormKey.currentState!.validate()) {
       try {
+        signUpStateRequest.value = SignUpStateRequest.requesting;
         await _signUpRepository.completeSignUp(
             userNameController.text, userImage.firstOrNull?.path);
+        signUpStateRequest.value = SignUpStateRequest.done;
+        if (context.mounted) {
+          Navigator.pushReplacementNamed(context, Routes.home);
+        }
       } catch (e) {
         signUpStateRequest.value = SignUpStateRequest.error;
         String error = "";

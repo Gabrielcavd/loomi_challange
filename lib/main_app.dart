@@ -23,26 +23,18 @@ class MainApp extends StatelessWidget {
       getPages: AppPages.routes,
       onReady: () {
         final firebaseService = getDependency.get<FirebaseAuthService>(context);
-        final sessionState = getDependency.get<SessionService>(context);
         if (firebaseService.firebaseAuth.currentUser != null) {
           print("USER LOGGED");
+          navigator?.pushNamedAndRemoveUntil(
+            Routes.home,
+            ModalRoute.withName(Routes.home),
+          );
         } else {
-          print("USER NOT LOGGED");
+          navigator?.pushNamedAndRemoveUntil(
+            Routes.signUp,
+            ModalRoute.withName(Routes.signUp),
+          );
         }
-        ever(sessionState.sessionState, (userSession) {
-          if (!sessionState.isLogged) {
-            navigator?.pushNamedAndRemoveUntil(
-              Routes.signUp,
-              ModalRoute.withName(Routes.signUp),
-            );
-          } else {
-            // navigator?.pushNamedAndRemoveUntil(
-            //   Routes.chat,
-            //   ModalRoute.withName(Routes.chat),
-            // );
-            print("USER LOGGED");
-          }
-        });
       },
     );
   }
