@@ -42,6 +42,19 @@ class FirebaseAuthService extends GetxController {
     }
   }
 
+  Future<void> changePassword(
+      String currentPassword, String newPassword) async {
+    try {
+      final user = firebaseAuth.currentUser;
+      final credential = EmailAuthProvider.credential(
+          email: user!.email!, password: currentPassword.trim());
+      await user.reauthenticateWithCredential(credential);
+      await user.updatePassword(newPassword.trim());
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<void> updateDisplayName(String displayName) async {
     try {
       await firebaseAuth.currentUser!.updateDisplayName(displayName.trim());
