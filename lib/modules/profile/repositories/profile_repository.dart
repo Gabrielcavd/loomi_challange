@@ -25,6 +25,15 @@ class ProfileRepository {
     }
   }
 
+  Future<void> changePassword(
+      String currentPassword, String newPassword) async {
+    try {
+      await firebaseAuthService.changePassword(currentPassword, newPassword);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<void> deleteAccount() async {
     try {
       await firebaseAuthService.deleteAccount();

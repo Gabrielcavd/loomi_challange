@@ -93,7 +93,10 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               const SizedBox(height: 10),
               TileOption(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(
+                      context, "${Routes.profile}${Routes.editPassword}");
+                },
                 title: "Change Password",
                 icon: CustomIcons.shield(
                   height: 18,

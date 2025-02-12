@@ -7,6 +7,7 @@ import 'package:loomi_challange/modules/login/pages/forgot_password_instructions
 import 'package:loomi_challange/modules/login/pages/forgot_password_page.dart';
 import 'package:loomi_challange/modules/login/pages/login_page.dart';
 import 'package:loomi_challange/modules/profile/bindings/profile_bindings.dart';
+import 'package:loomi_challange/modules/profile/pages/change_password_page.dart';
 import 'package:loomi_challange/modules/profile/pages/edit_profile_page.dart';
 import 'package:loomi_challange/modules/profile/pages/profile_page.dart';
 import 'package:loomi_challange/modules/profile/pages/subscription_page.dart';
@@ -66,6 +67,10 @@ class AppPages {
           GetPage(
             name: Routes.seeSubscription,
             page: () => const SubscriptionPage(),
+          ),
+          GetPage(
+            name: Routes.editPassword,
+            page: () => const ChangePasswordPage(),
           ),
         ]),
   ];
