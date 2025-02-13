@@ -13,20 +13,32 @@ class UserProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CircleAvatar(
-          radius: 50,
-          backgroundColor: AppTheme.palleteGrey,
-          backgroundImage: photoURL != null
-              ? FileImage(
+        ClipRRect(
+          borderRadius: BorderRadius.circular(60),
+          child: photoURL!.isNotEmpty
+              ? Image.file(
+                  errorBuilder: (context, error, stackTrace) =>
+                      const CircleAvatar(
+                    radius: 50,
+                    backgroundColor: AppTheme.palleteGrey,
+                    child: Icon(
+                      Icons.person,
+                      size: 58,
+                    ),
+                  ),
                   File(photoURL!),
+                  width: 116,
+                  height: 116,
+                  fit: BoxFit.cover,
                 )
-              : null,
-          child: photoURL == null
-              ? const Icon(
-                  Icons.person,
-                  size: 50,
-                )
-              : null,
+              : const CircleAvatar(
+                  radius: 50,
+                  backgroundColor: AppTheme.palleteGrey,
+                  child: Icon(
+                    Icons.person,
+                    size: 58,
+                  ),
+                ),
         ),
         const SizedBox(width: 15),
         Column(

@@ -9,28 +9,33 @@ class AppButton extends StatelessWidget {
       required this.onPressed,
       required this.width,
       required this.text,
-      this.isRequesting = false});
+      this.isRequesting = false,
+      this.transparentButton = false});
   final void Function() onPressed;
   final double width;
   final String text;
   final bool isRequesting;
+  final bool transparentButton;
 
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(
-            color: AppTheme.palleteGrey.shade700,
-            blurRadius: 7,
-            offset: const Offset(0, 0),
-          ),
-        ],
+        boxShadow: transparentButton
+            ? []
+            : [
+                BoxShadow(
+                  color: AppTheme.palleteGrey.shade700,
+                  blurRadius: 7,
+                  offset: const Offset(0, 0),
+                ),
+              ],
       ),
       child: ElevatedButton(
         onPressed: isRequesting ? null : onPressed,
-        style: AppButtonStyles.elevatedButtonStyle(context, width),
+        style: AppButtonStyles.elevatedButtonStyle(context, width,
+            transparentButton: transparentButton),
         child: isRequesting
             ? const CircularProgressIndicator(color: AppTheme.lightPurple)
             : Text(

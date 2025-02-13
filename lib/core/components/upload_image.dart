@@ -84,6 +84,15 @@ class ChangeImageComponent extends StatelessWidget {
           borderRadius: BorderRadius.circular(60),
           child: imagePath!.isNotEmpty
               ? Image.file(
+                  errorBuilder: (context, error, stackTrace) =>
+                      const CircleAvatar(
+                    radius: 50,
+                    backgroundColor: AppTheme.palleteGrey,
+                    child: Icon(
+                      Icons.person,
+                      size: 58,
+                    ),
+                  ),
                   File(imagePath!),
                   width: 116,
                   height: 116,
