@@ -31,6 +31,30 @@ class FirebaseAuthService extends GetxController {
     }
   }
 
+  Future<String?> getAuthToken() async {
+    try {
+      User? user = firebaseAuth.currentUser;
+      if (user != null) {
+        return await user.getIdToken();
+      }
+      return null; // Usuário não autenticado
+    } catch (e) {
+      throw Exception('Erro ao obter token: $e');
+    }
+  }
+
+  Future<String?> getFirebaseUID() async {
+    try {
+      User? user = firebaseAuth.currentUser;
+      if (user != null) {
+        return user.uid;
+      }
+      return null;
+    } catch (e) {
+      throw Exception('Erro ao obter UID: $e');
+    }
+  }
+
   Future<UserCredential> signInUserWithEmailAndPassword(
       String email, String password) async {
     try {

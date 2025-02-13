@@ -18,7 +18,8 @@ class AppTextField extends StatelessWidget {
       this.hintStyle,
       this.height,
       this.decoration,
-      this.shineBorder = false});
+      this.shineBorder = false,
+      this.contentPadding});
   final bool obscureText;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
@@ -31,6 +32,7 @@ class AppTextField extends StatelessWidget {
   final TextStyle? hintStyle;
   final double? height;
   final bool shineBorder;
+  final EdgeInsetsGeometry? contentPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +66,7 @@ class AppTextField extends StatelessWidget {
           decoration: decoration ??
               AppTextInputStyles.inputDecoration(
                 hintText: hintText,
+                contentPadding: contentPadding,
                 suffixIcon: suffixIcon,
                 hintStyle: hintStyle ??
                     AppTextStyles.textStyle(

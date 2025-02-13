@@ -15,6 +15,8 @@ import 'package:loomi_challange/modules/sign_up/bindings/sign_up_bindings.dart';
 import 'package:loomi_challange/modules/sign_up/pages/complete_sign_up_page.dart';
 import 'package:loomi_challange/modules/sign_up/pages/sign_up_page.dart';
 import 'package:loomi_challange/modules/splash/splash_screen.dart';
+import 'package:loomi_challange/modules/watch_movie/bindings/watch_movie_bindings.dart';
+import 'package:loomi_challange/modules/watch_movie/pages/watch_movie_page.dart';
 
 class AppPages {
   static const initial = Routes.root;
@@ -73,5 +75,10 @@ class AppPages {
             page: () => const ChangePasswordPage(),
           ),
         ]),
+    GetPage(
+      name: Routes.watchMovie,
+      binding: WatchMovieBindings(),
+      page: () => const WatchMoviePage(),
+    ),
   ];
 }
