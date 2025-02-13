@@ -20,6 +20,27 @@ class CustomIcons {
   static Widget shield({Color? color, double? width, double? height}) =>
       SvgPicture.asset("assets/icons/shield.svg",
           width: width, height: height, colorFilter: _getColorFilter(color));
+  static Widget like({Color? color, double? width, double? height}) =>
+      SvgPicture.asset("assets/icons/like.svg",
+          width: width, height: height, colorFilter: _getColorFilter(color));
+  static Widget likeFill({Color? color, double? width, double? height}) =>
+      SvgPicture.asset("assets/icons/like_fill.svg",
+          width: width, height: height, colorFilter: _getColorFilter(color));
+  static Widget dislike({Color? color, double? width, double? height}) =>
+      SvgPicture.asset("assets/icons/dislike.svg",
+          width: width, height: height, colorFilter: _getColorFilter(color));
+  static Widget dislikeFill({Color? color, double? width, double? height}) =>
+      SvgPicture.asset("assets/icons/dislike_fill.svg",
+          width: width, height: height, colorFilter: _getColorFilter(color));
+  static Widget loveIt({Color? color, double? width, double? height}) =>
+      SvgPicture.asset("assets/icons/love_it.svg",
+          width: width, height: height, colorFilter: _getColorFilter(color));
+  static Widget loveItFill({Color? color, double? width, double? height}) =>
+      SvgPicture.asset("assets/icons/love_it_fill.svg",
+          width: width, height: height, colorFilter: _getColorFilter(color));
+  static Widget send({Color? color, double? width, double? height}) =>
+      SvgPicture.asset("assets/icons/send.svg",
+          width: width, height: height, colorFilter: _getColorFilter(color));
 
   static ColorFilter? _getColorFilter(Color? color) =>
       color != null ? ColorFilter.mode(color, BlendMode.srcIn) : null;
