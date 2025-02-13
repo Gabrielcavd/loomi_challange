@@ -12,7 +12,7 @@ class AppButtonStyles {
           ? AppTheme.purplePrimary.shade900.withOpacity(0.4)
           : AppTheme.purplePrimary.shade900,
       minimumSize: Size(width, 42),
-      side: BorderSide(
+      side: const BorderSide(
         color: AppTheme.lightPurple,
       ),
       shape: RoundedRectangleBorder(

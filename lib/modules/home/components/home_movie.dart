@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challange/core/data/domain/entities/movie.dart';
 import 'package:loomi_challange/modules/home/components/home_movie_info.dart';
-import 'package:loomi_challange/modules/home/components/home_movie_info_loading.dart';
-import 'package:loomi_challange/modules/home/components/movie_full_loading.dart';
 import 'package:loomi_challange/modules/home/components/movie_loading.dart';
 import 'package:loomi_challange/modules/home/components/movie_player.dart';
 import 'package:loomi_challange/modules/home/controllers/home_controller.dart';
-import 'package:video_player/video_player.dart';
 
 class HomeMovie extends StatefulWidget {
   const HomeMovie({super.key, required this.movie, required this.controller});
@@ -79,6 +76,9 @@ class _HomeMovieState extends State<HomeMovie> {
             left: 0,
             right: 0,
             child: HomeMovieInfo(
+              onPressedWatch: () {
+                widget.controller.watchMovie(context, widget.movie);
+              },
               movie: widget.movie,
             ),
           ),

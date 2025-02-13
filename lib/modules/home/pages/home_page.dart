@@ -1,22 +1,16 @@
-import 'dart:io';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challange/core/components/page_base.dart';
 import 'package:loomi_challange/core/data/domain/entities/movie.dart';
 import 'package:loomi_challange/core/design_system/themes/app_text_styles.dart';
 import 'package:loomi_challange/core/design_system/themes/app_theme.dart';
-import 'package:loomi_challange/core/design_system/themes/custom_icons.dart';
 import 'package:loomi_challange/core/resolve_dependences/resolve_dependences.dart';
-import 'package:loomi_challange/core/routes/app_routes.dart';
 import 'package:loomi_challange/modules/home/components/home_movie.dart';
-import 'package:loomi_challange/modules/home/components/home_movie_info_loading.dart';
 import 'package:loomi_challange/modules/home/components/movie_full_loading.dart';
 import 'package:loomi_challange/modules/home/components/movie_player.dart';
 import 'package:loomi_challange/modules/home/controllers/home_controller.dart';
-import 'package:loomi_challange/modules/home/controllers/profile_icon.dart';
-import 'package:video_player/video_player.dart';
+import 'package:loomi_challange/modules/home/components/profile_icon.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

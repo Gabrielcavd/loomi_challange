@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challange/core/components/app_button.dart';
@@ -72,12 +70,12 @@ class ChangePasswordPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 35),
+                const SizedBox(height: 35),
                 Divider(
                   color: AppTheme.palleteGrey.shade700,
                   thickness: 0.5,
                 ),
-                SizedBox(height: 35),
+                const SizedBox(height: 35),
                 Obx(
                   () => AppTextField(
                     controller: controller.newPassword,

@@ -10,4 +10,5 @@ abstract class Routes {
   static const editProfile = '/edit-profile';
   static const editPassword = '/edit-password';
   static const seeSubscription = '/see-subscription';
+  static const watchMovie = '/watch-movie';
 }

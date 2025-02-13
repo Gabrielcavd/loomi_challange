@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
 class MoviePlayer extends StatelessWidget {
@@ -32,10 +33,14 @@ class MoviePlayer extends StatelessWidget {
                         child: VideoPlayer(videoController))))),
         if (blurMovie)
           ClipRect(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-              child: Container(
-                color: Colors.black.withOpacity(0.5),
+            child: SizedBox(
+              height: Get.height,
+              width: Get.width,
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                child: Container(
+                  color: Colors.black.withOpacity(0.5),
+                ),
               ),
             ),
           ),

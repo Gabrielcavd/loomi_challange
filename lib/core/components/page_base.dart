@@ -7,21 +7,37 @@ class PageBase extends StatelessWidget {
   final List<Widget>? actions;
   final bool? enableAppBar;
   final String? title;
+  final bool extendBody;
+  final bool centerTitle;
+  final Widget? endDrawer;
+  final GlobalKey? scaffoldKey;
+
   const PageBase(
       {super.key,
       this.body,
       this.bottomNavigationBar,
       this.actions,
       this.enableAppBar = false,
-      this.title});
+      this.title,
+      this.extendBody = false,
+      this.centerTitle = true,
+      this.endDrawer,
+      this.scaffoldKey});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: enableAppBar == false
           ? null
-          : DefaultAppBar(actions: actions ?? [], title: title),
+          : DefaultAppBar(
+              actions: actions ?? [],
+              title: title,
+              centerTitle: centerTitle,
+            ),
       body: body,
+      endDrawer: endDrawer,
+      extendBodyBehindAppBar: extendBody,
       bottomNavigationBar: bottomNavigationBar != null
           ? Padding(
               padding: const EdgeInsets.only(bottom: 20),

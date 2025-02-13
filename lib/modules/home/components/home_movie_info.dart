@@ -7,8 +7,10 @@ import 'package:loomi_challange/modules/home/components/home_movie_interactions.
 import 'package:loomi_challange/modules/home/components/home_movie_resume.dart';
 
 class HomeMovieInfo extends StatelessWidget {
-  const HomeMovieInfo({super.key, required this.movie});
+  const HomeMovieInfo(
+      {super.key, required this.movie, required this.onPressedWatch});
   final Movie movie;
+  final void Function() onPressedWatch;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class HomeMovieInfo extends StatelessWidget {
         const SizedBox(height: 40),
         Center(
           child: AppButton(
-            onPressed: () {},
+            onPressed: onPressedWatch,
             width: 205,
             transparentButton: true,
             text: "Watch",
