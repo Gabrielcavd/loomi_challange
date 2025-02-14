@@ -24,6 +24,7 @@ class _HomeMovieState extends State<HomeMovie> {
     return Container(
       width: width,
       height: height * 0.77,
+      margin: const EdgeInsets.only(right: 20),
       decoration: const BoxDecoration(
         color: Colors.black,
         borderRadius: BorderRadius.all(

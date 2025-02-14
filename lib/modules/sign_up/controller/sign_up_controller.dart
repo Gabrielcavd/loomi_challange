@@ -79,6 +79,26 @@ class SignUpController extends GetxController {
     }
   }
 
+  void handleGoogleLogin(BuildContext context) async {
+    try {
+      signUpStateRequest.value = SignUpStateRequest.requesting;
+      await _signUpRepository.loginWithGoogle();
+      signUpStateRequest.value = SignUpStateRequest.done;
+      if (context.mounted) {
+        Navigator.pushReplacementNamed(context, Routes.home);
+      }
+    } catch (e) {
+      signUpStateRequest.value = SignUpStateRequest.error;
+      String error = "";
+      if (e is FirebaseAuthException) {
+        error = e.code;
+      }
+      if (context.mounted) {
+        getAppSnackBar(handleFirebaseExceptions(error), context);
+      }
+    }
+  }
+
   Future<void> pickFile({List<String>? allowedExtensions}) async {
     try {
       final result = await FilePicker.platform.pickFiles(
