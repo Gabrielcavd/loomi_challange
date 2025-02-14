@@ -7,7 +7,7 @@ import 'package:loomi_challange/core/data/services/firebase_auth_service.dart';
 class WatchMovieRepository {
   WatchMovieRepository(this.firebaseAuthService, this._baseHttpClient);
   FirebaseAuthService firebaseAuthService;
-  BaseHttpClient _baseHttpClient;
+  final BaseHttpClient _baseHttpClient;
 
   Future<List<Subtitle>> getSubtitles() async {
     try {

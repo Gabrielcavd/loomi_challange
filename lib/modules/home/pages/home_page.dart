@@ -59,28 +59,7 @@ class _HomePageState extends State<HomePage> {
                             height: height * 0.77,
                             width: width,
                             child: HomeState.error == controller.state.value
-                                ? Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Error loading movies',
-                                        style: AppTextStyles
-                                            .headerSubtitleTextStyle(
-                                                fontSize: 16,
-                                                color: AppTheme.palleteWhite),
-                                      ),
-                                      const SizedBox(height: 10),
-                                      IconButton(
-                                        onPressed: () {
-                                          controller.getMovies();
-                                        },
-                                        icon: const Icon(
-                                          Icons.refresh,
-                                          color: AppTheme.lightPurple,
-                                        ),
-                                      ),
-                                    ],
-                                  )
+                                ? ErrorLoadingMovies(controller: controller)
                                 : PageView.builder(
                                     controller: controller.pageController,
                                     onPageChanged: (index) async {
@@ -104,6 +83,35 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class ErrorLoadingMovies extends StatelessWidget {
+  const ErrorLoadingMovies({super.key, required this.controller});
+  final HomeController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'Error loading movies',
+          style: AppTextStyles.headerSubtitleTextStyle(
+              fontSize: 16, color: AppTheme.palleteWhite),
+        ),
+        const SizedBox(height: 10),
+        IconButton(
+          onPressed: () {
+            controller.getMovies();
+          },
+          icon: const Icon(
+            Icons.refresh,
+            color: AppTheme.lightPurple,
+          ),
+        ),
+      ],
     );
   }
 }

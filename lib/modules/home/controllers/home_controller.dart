@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challange/core/data/domain/entities/movie.dart';
@@ -84,9 +83,6 @@ class HomeController extends GetxController {
     // }
     Navigator.pushNamed(context, Routes.watchMovie, arguments: movie).then(
       (value) {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.portraitUp,
-        ]);
         Future.delayed(const Duration(seconds: 10), () {
           videoState.value = HomeState.done;
         });

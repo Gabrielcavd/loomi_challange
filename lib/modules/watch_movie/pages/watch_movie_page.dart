@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challange/core/components/movie_subtitles.dart';
 import 'package:loomi_challange/core/components/page_base.dart';
@@ -21,102 +22,110 @@ class WatchMoviePage extends StatelessWidget {
         getDependency.get<WatchMovieController>(context);
     final videoController = controller.videoController;
 
-    return Obx(
-      () => PageBase(
-        enableAppBar: controller.showInterface.value,
-        extendBody: true,
-        centerTitle: false,
-        title: controller.movie.name,
-        endDrawer: CommentsDrawer(
-          controller: controller,
-        ),
-        actions: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () {
-                  controller.showSubtitles.toggle();
-                  controller.showInterface.toggle();
-                },
-                child: CustomIcons.subtitle(),
-              ),
-              const SizedBox(width: 5),
-              Text(
-                'Subtitles / audio',
-                style: AppTextStyles.textStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: AppTheme.palleteWhite),
-              ),
-            ],
+    return PopScope(
+      onPopInvoked: (didPop) {
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+        ]);
+      },
+      child: Obx(
+        () => PageBase(
+          enableAppBar: controller.showInterface.value,
+          extendBody: true,
+          centerTitle: false,
+          title: controller.movie.name,
+          endDrawer: CommentsDrawer(
+            controller: controller,
           ),
-          const SizedBox(width: 30),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Builder(
-                builder: (context) => InkWell(
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
                   onTap: () {
-                    Scaffold.of(context).openEndDrawer();
+                    controller.showSubtitles.toggle();
+                    controller.showInterface.toggle();
                   },
-                  child: CustomIcons.comment(),
+                  child: CustomIcons.subtitle(),
                 ),
-              ),
-              const SizedBox(width: 5),
-              Text(
-                'Comments 324',
-                style: AppTextStyles.textStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: AppTheme.palleteWhite),
-              ),
-            ],
-          ),
-          const SizedBox(width: 10),
-        ],
-        body: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: controller.showSubtitles.value
-              ? null
-              : () {
-                  controller.toggleInterface();
-                },
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              Obx(
-                () => controller.videoIsLoading.value
-                    ? const Center(
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            AppTheme.lightPurple,
+                const SizedBox(width: 5),
+                Text(
+                  'Subtitles / audio',
+                  style: AppTextStyles.textStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: AppTheme.palleteWhite),
+                ),
+              ],
+            ),
+            const SizedBox(width: 30),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Builder(
+                  builder: (context) => InkWell(
+                    onTap: () {
+                      Scaffold.of(context).openEndDrawer();
+                    },
+                    child: CustomIcons.comment(),
+                  ),
+                ),
+                const SizedBox(width: 5),
+                Text(
+                  'Comments 324',
+                  style: AppTextStyles.textStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: AppTheme.palleteWhite),
+                ),
+              ],
+            ),
+            const SizedBox(width: 10),
+          ],
+          body: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: controller.showSubtitles.value
+                ? null
+                : () {
+                    controller.toggleInterface();
+                  },
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                Obx(
+                  () => controller.videoIsLoading.value
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              AppTheme.lightPurple,
+                            ),
                           ),
+                        )
+                      : WatchMoviePlayer(videoController: videoController),
+                ),
+                Obx(
+                  () => !controller.showInterface.value
+                      ? const SizedBox()
+                      : MovieCommands(
+                          controller: controller,
                         ),
-                      )
-                    : WatchMoviePlayer(videoController: videoController),
-              ),
-              Obx(
-                () => !controller.showInterface.value
-                    ? const SizedBox()
-                    : MovieCommands(
-                        controller: controller,
-                      ),
-              ),
-              Obx(
-                () => controller.videoIsLoading.value ||
-                        !controller.showInterface.value
-                    ? const SizedBox()
-                    : MovieProgressIndicator(videoController: videoController),
-              ),
-              Obx(
-                () => controller.showSubtitles.value
-                    ? MovieSubtitles(
-                        controller: controller,
-                      )
-                    : const SizedBox(),
-              ),
-            ],
+                ),
+                Obx(
+                  () => controller.videoIsLoading.value ||
+                          !controller.showInterface.value
+                      ? const SizedBox()
+                      : MovieProgressIndicator(
+                          videoController: videoController),
+                ),
+                Obx(
+                  () => controller.showSubtitles.value
+                      ? MovieSubtitles(
+                          controller: controller,
+                        )
+                      : const SizedBox(),
+                ),
+              ],
+            ),
           ),
         ),
       ),
