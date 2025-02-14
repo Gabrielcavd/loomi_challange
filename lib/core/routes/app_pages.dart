@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:loomi_challange/core/routes/app_routes.dart';
 import 'package:loomi_challange/modules/home/bindings/home_bindings.dart';
+import 'package:loomi_challange/modules/home/pages/home_movie_comments_page.dart';
 import 'package:loomi_challange/modules/home/pages/home_page.dart';
 import 'package:loomi_challange/modules/login/bindings/login_bindings.dart';
 import 'package:loomi_challange/modules/login/pages/forgot_password_instructions_page.dart';
@@ -53,10 +54,15 @@ class AppPages {
       ],
     ),
     GetPage(
-      name: Routes.home,
-      binding: HomeBindings(),
-      page: () => const HomePage(),
-    ),
+        name: Routes.home,
+        binding: HomeBindings(),
+        page: () => const HomePage(),
+        children: [
+          GetPage(
+            name: Routes.movieComments,
+            page: () => const HomeMovieCommentsPage(),
+          ),
+        ]),
     GetPage(
         name: Routes.profile,
         binding: ProfileBindings(),

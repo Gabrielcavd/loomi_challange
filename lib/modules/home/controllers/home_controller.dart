@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challange/core/data/domain/entities/movie.dart';
+import 'package:loomi_challange/core/design_system/themes/custom_icons.dart';
 import 'package:loomi_challange/core/routes/app_routes.dart';
 import 'package:loomi_challange/modules/home/components/home_movie_background.dart';
 import 'package:loomi_challange/modules/home/repositories/home_repository.dart';
@@ -19,6 +20,9 @@ class HomeController extends GetxController {
   final state = HomeState.loading.obs;
   final videoState = HomeState.loading.obs;
   final gradientState = HomeState.loading.obs;
+  Rx<Widget> likeIcon = CustomIcons.like().obs;
+  Rx<Widget> dislikeIcon = CustomIcons.dislike().obs;
+  Rx<Widget> loveIcon = CustomIcons.loveIt().obs;
   LinearGradient? backGroundGradient;
   RxBool imageMovieLoading = true.obs;
 
@@ -42,12 +46,49 @@ class HomeController extends GetxController {
     videoController!.dispose();
   }
 
+  void likeMovie() {
+    likeIcon.value = CustomIcons.likeFill();
+    dislikeIcon.value = CustomIcons.dislike();
+    loveIcon.value = CustomIcons.loveIt();
+  }
+
+  void dislikeMovie() {
+    likeIcon.value = CustomIcons.like();
+    dislikeIcon.value = CustomIcons.dislikeFill();
+    loveIcon.value = CustomIcons.loveIt();
+  }
+
+  void loveMovie() {
+    likeIcon.value = CustomIcons.like();
+    dislikeIcon.value = CustomIcons.dislike();
+    loveIcon.value = CustomIcons.loveItFill();
+  }
+
+  void goToProfile(BuildContext context) {
+    if (videoController != null) {
+      videoController!.pause();
+      videoState.value = HomeState.loading;
+    }
+    Navigator.pushNamed(context, Routes.profile).then((value) {
+      Future.delayed(const Duration(seconds: 10), () {
+        videoState.value = HomeState.done;
+      });
+    });
+  }
+
   void watchMovie(BuildContext context, Movie movie) {
+    if (videoController != null) {
+      videoController!.pause();
+      videoState.value = HomeState.loading;
+    }
     Navigator.pushNamed(context, Routes.watchMovie, arguments: movie).then(
       (value) {
         SystemChrome.setPreferredOrientations([
           DeviceOrientation.portraitUp,
         ]);
+        Future.delayed(const Duration(seconds: 10), () {
+          videoState.value = HomeState.done;
+        });
       },
     );
   }

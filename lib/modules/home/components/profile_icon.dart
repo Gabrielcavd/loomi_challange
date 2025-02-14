@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challange/core/components/profile_image.dart';
-import 'package:loomi_challange/core/routes/app_routes.dart';
 import 'package:loomi_challange/modules/home/controllers/home_controller.dart';
 
 class ProfileIcon extends StatelessWidget {
@@ -10,8 +9,10 @@ class ProfileIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       onTap: () {
-        Navigator.pushNamed(context, Routes.profile);
+        controller.goToProfile(context);
       },
       child: ProfileImage(
         photoURL: controller.user!.photoURL!,
