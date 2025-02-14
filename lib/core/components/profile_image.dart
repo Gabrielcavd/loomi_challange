@@ -26,8 +26,8 @@ class ProfileImage extends StatelessWidget {
           ? isNetworkImage
               ? Image.network(
                   photoURL,
-                  height: height,
-                  width: width,
+                  height: height ?? 40,
+                  width: width ?? 40,
                   fit: BoxFit.cover,
                 )
               : Image.file(

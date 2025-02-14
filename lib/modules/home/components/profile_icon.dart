@@ -13,7 +13,9 @@ class ProfileIcon extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(context, Routes.profile);
       },
-      child: ProfileImage(photoURL: controller.user!.photoURL!),
+      child: ProfileImage(
+        photoURL: controller.user!.photoURL!,
+      ),
     );
   }
 }
