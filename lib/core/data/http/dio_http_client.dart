@@ -72,7 +72,6 @@ class DioHttpClient implements BaseHttpClient {
   }) async {
     final Response response;
     var data = json.encode(body);
-    print(data);
     try {
       response = await dio.request(
         url,
@@ -132,19 +131,6 @@ class DioHttpClient implements BaseHttpClient {
   }
 
   Map<String, dynamic> _extactData(dynamic data) {
-    if (data is String) {
-      return {"data": data};
-    }
-    if (data is List) {
-      return {"data": data};
-    }
-    if (data["data"] != null) {
-      return data["data"];
-    }
-    if (data is Map<String, dynamic>) {
-      return data;
-    }
-
-    return {};
+    return {"data": data};
   }
 }

@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challange/core/components/action_buttons.dart';
@@ -28,7 +26,7 @@ class CompleteSignUpPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                PageHeader(
+                const PageHeader(
                     title: "Tell us more!", subTitle: "Complete your profile"),
                 Obx(
                   () => UploadImageComponent(
@@ -36,7 +34,7 @@ class CompleteSignUpPage extends StatelessWidget {
                     onTap: () {
                       showModalBottomSheet(
                         context: context,
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20),

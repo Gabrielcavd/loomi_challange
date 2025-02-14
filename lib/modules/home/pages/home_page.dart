@@ -1,57 +1,117 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:loomi_challange/core/components/page_base.dart';
+import 'package:loomi_challange/core/data/domain/entities/movie.dart';
+import 'package:loomi_challange/core/design_system/themes/app_text_styles.dart';
 import 'package:loomi_challange/core/design_system/themes/app_theme.dart';
 import 'package:loomi_challange/core/resolve_dependences/resolve_dependences.dart';
-import 'package:loomi_challange/core/routes/app_routes.dart';
+import 'package:loomi_challange/modules/home/components/home_header.dart';
+import 'package:loomi_challange/modules/home/components/home_movie.dart';
+import 'package:loomi_challange/modules/home/components/movie_full_loading.dart';
 import 'package:loomi_challange/modules/home/controllers/home_controller.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final HomeController controller =
         getDependency.get<HomeController>(context);
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: PageBase(
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: Stack(
+          children: [
+            Obx(
+              () => controller.gradientState.value == HomeState.done
+                  ? Container(
+                      decoration: BoxDecoration(
+                          gradient: controller.backGroundGradient),
+                    )
+                  : const SizedBox(),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, top: 25),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(width: 20),
-                  Image.asset(
-                    "assets/images/small_logo.png",
-                    width: 32,
+                  HomeHeader(controller: controller),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Now Showing',
+                    style: AppTextStyles.headerTitleTextStyle(
+                        fontSize: 21, color: AppTheme.palleteWhite),
                   ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, Routes.profile);
-                    },
-                    child: CircleAvatar(
-                      radius: 20,
-                      backgroundColor: AppTheme.palleteGrey,
-                      backgroundImage: controller.user!.photoURL != null
-                          ? FileImage(
-                              File(controller.user!.photoURL!),
-                            )
-                          : null,
-                      child: controller.user!.photoURL == null
-                          ? const Icon(Icons.person)
-                          : null,
-                    ),
+                  const SizedBox(height: 10),
+                  Obx(
+                    () => HomeState.loading == controller.state.value
+                        ? const Padding(
+                            padding: EdgeInsets.only(right: 20),
+                            child: MovieFullLoading(),
+                          )
+                        : SizedBox(
+                            height: height * 0.77,
+                            width: width,
+                            child: HomeState.error == controller.state.value
+                                ? ErrorLoadingMovies(controller: controller)
+                                : PageView.builder(
+                                    controller: controller.pageController,
+                                    onPageChanged: (index) async {
+                                      await controller.onPageChanged(index);
+                                    },
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: controller.movies.length,
+                                    itemBuilder: (context, index) {
+                                      Movie movie = controller.movies[index];
+                                      return HomeMovie(
+                                        movie: movie,
+                                        controller: controller,
+                                      );
+                                    },
+                                  ),
+                          ),
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
+    );
+  }
+}
+
+class ErrorLoadingMovies extends StatelessWidget {
+  const ErrorLoadingMovies({super.key, required this.controller});
+  final HomeController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'Error loading movies',
+          style: AppTextStyles.headerSubtitleTextStyle(
+              fontSize: 16, color: AppTheme.palleteWhite),
+        ),
+        const SizedBox(height: 10),
+        IconButton(
+          onPressed: () {
+            controller.getMovies();
+          },
+          icon: const Icon(
+            Icons.refresh,
+            color: AppTheme.lightPurple,
+          ),
+        ),
+      ],
     );
   }
 }

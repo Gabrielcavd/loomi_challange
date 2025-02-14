@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:loomi_challange/core/data/http/api.dart';
 import 'package:loomi_challange/core/data/http/base_http_client.dart';
 import 'package:loomi_challange/core/data/services/firebase_auth_service.dart';
 
@@ -13,6 +14,14 @@ class SignUpRepository {
       UserCredential user = await _firebaseAuthService
           .registerUserWithEmailAndPassword(email, password);
       // String? token = await user.user!.getIdToken();
+      String? uid = user.user!.uid;
+      final body = {
+        "email": email,
+        "password": password,
+        "firebase_UID": uid,
+        "username": "user",
+      };
+      _baseHttpClient.post(Api.registerUser, body);
       return user;
     } catch (e) {
       rethrow;
@@ -25,6 +34,15 @@ class SignUpRepository {
       if (photoURL != null) {
         await _firebaseAuthService.updatePhotoURL(photoURL);
       }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<UserCredential?> loginWithGoogle() async {
+    try {
+      final userLogged = await _firebaseAuthService.googleSignIn();
+      return userLogged;
     } catch (e) {
       rethrow;
     }

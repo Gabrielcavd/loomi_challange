@@ -1,8 +1,5 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:loomi_challange/core/components/profile_image.dart';
 import 'package:loomi_challange/core/design_system/themes/app_text_styles.dart';
 import 'package:loomi_challange/core/design_system/themes/app_theme.dart';
 import 'package:loomi_challange/core/design_system/themes/custom_icons.dart';
@@ -42,7 +39,7 @@ class UploadImageComponent extends StatelessWidget {
                   child: CustomIcons.camera(),
                 ),
               ),
-        SizedBox(width: 15),
+        const SizedBox(width: 15),
         SizedBox(
           width: 92,
           child: RichText(
@@ -82,23 +79,12 @@ class ChangeImageComponent extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(60),
-          child: imagePath!.isNotEmpty
-              ? Image.file(
-                  File(imagePath!),
-                  width: 116,
-                  height: 116,
-                  fit: BoxFit.cover,
-                )
-              : CircleAvatar(
-                  radius: 50,
-                  backgroundColor: AppTheme.palleteGrey,
-                  child: Icon(
-                    Icons.person,
-                    size: 58,
-                  ),
-                ),
+        ProfileImage(
+          photoURL: imagePath!,
+          borderRadius: 55,
+          height: 116,
+          width: 116,
+          iconSize: 40,
         ),
         Positioned(
           right: -10,

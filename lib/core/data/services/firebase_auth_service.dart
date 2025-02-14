@@ -25,10 +25,33 @@ class FirebaseAuthService extends GetxController {
         idToken: googleAuth?.idToken,
       );
       final user = await firebaseAuth.signInWithCredential(credential);
-      print(firebaseAuth.currentUser!.email);
       return user;
     } catch (e) {
       rethrow;
+    }
+  }
+
+  Future<String?> getAuthToken() async {
+    try {
+      User? user = firebaseAuth.currentUser;
+      if (user != null) {
+        return await user.getIdToken();
+      }
+      return null; // Usuário não autenticado
+    } catch (e) {
+      throw Exception('Erro ao obter token: $e');
+    }
+  }
+
+  Future<String?> getFirebaseUID() async {
+    try {
+      User? user = firebaseAuth.currentUser;
+      if (user != null) {
+        return user.uid;
+      }
+      return null;
+    } catch (e) {
+      throw Exception('Erro ao obter UID: $e');
     }
   }
 
@@ -38,6 +61,27 @@ class FirebaseAuthService extends GetxController {
       UserCredential user = await firebaseAuth.signInWithEmailAndPassword(
           email: email.trim(), password: password.trim());
       return user;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> changePassword(
+      String currentPassword, String newPassword) async {
+    try {
+      final user = firebaseAuth.currentUser;
+      final credential = EmailAuthProvider.credential(
+          email: user!.email!, password: currentPassword.trim());
+      await user.reauthenticateWithCredential(credential);
+      await user.updatePassword(newPassword.trim());
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await firebaseAuth.sendPasswordResetEmail(email: email.trim());
     } catch (e) {
       rethrow;
     }
