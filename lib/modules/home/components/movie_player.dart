@@ -20,17 +20,21 @@ class MoviePlayer extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         ClipRect(
-            child: OverflowBox(
-                maxWidth: double.infinity,
-                maxHeight: double.infinity,
-                alignment: Alignment.center,
-                child: FittedBox(
-                    fit: BoxFit.cover,
-                    alignment: Alignment.center,
-                    child: SizedBox(
-                        width: size.width * zoom,
-                        height: size.height * zoom,
-                        child: VideoPlayer(videoController))))),
+          child: OverflowBox(
+            maxWidth: double.infinity,
+            maxHeight: double.infinity,
+            alignment: Alignment.center,
+            child: FittedBox(
+              fit: BoxFit.cover,
+              alignment: Alignment.center,
+              child: SizedBox(
+                width: size.width * zoom,
+                height: size.height * zoom,
+                child: VideoPlayer(videoController),
+              ),
+            ),
+          ),
+        ),
         if (blurMovie)
           ClipRect(
             child: SizedBox(

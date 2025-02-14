@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:loomi_challange/core/components/app_text_field.dart';
 import 'package:loomi_challange/core/components/comment.dart';
+import 'package:loomi_challange/core/components/profile_image.dart';
 import 'package:loomi_challange/core/design_system/themes/app_text_styles.dart';
 import 'package:loomi_challange/core/design_system/themes/app_theme.dart';
 import 'package:loomi_challange/modules/watch_movie/controllers/watch_movie_controller.dart';
@@ -52,41 +51,16 @@ class CommentsDrawer extends StatelessWidget {
               },
             ),
           ),
-          //TODO componentizar profile
           const Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: currentUser.photoURL!.isNotEmpty
-                    ? Image.file(
-                        errorBuilder: (context, error, stackTrace) =>
-                            const CircleAvatar(
-                          radius: 20,
-                          backgroundColor: AppTheme.palleteGrey,
-                          child: Icon(
-                            Icons.person,
-                          ),
-                        ),
-                        File(currentUser.photoURL!),
-                        height: 40,
-                        width: 40,
-                        fit: BoxFit.cover,
-                      )
-                    : const CircleAvatar(
-                        radius: 20,
-                        backgroundColor: AppTheme.palleteGrey,
-                        child: Icon(
-                          Icons.person,
-                        ),
-                      ),
-              ),
+              ProfileImage(photoURL: currentUser.photoURL!),
               SizedBox(
                 height: 40,
                 width: size.width * 0.3,
                 child: const AppTextField(
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 10),
                   hintText: "Add a reply",
                 ),
               ),

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challange/core/components/movie_subtitles.dart';
@@ -8,7 +6,6 @@ import 'package:loomi_challange/core/design_system/themes/app_text_styles.dart';
 import 'package:loomi_challange/core/design_system/themes/app_theme.dart';
 import 'package:loomi_challange/core/design_system/themes/custom_icons.dart';
 import 'package:loomi_challange/core/resolve_dependences/resolve_dependences.dart';
-import 'package:loomi_challange/modules/home/components/home_movie_comments.dart';
 import 'package:loomi_challange/modules/watch_movie/components/movie_commands.dart';
 import 'package:loomi_challange/modules/watch_movie/components/movie_comments.dart';
 import 'package:loomi_challange/modules/watch_movie/components/movie_progress_indicator.dart';

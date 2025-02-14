@@ -4,6 +4,7 @@ import 'package:loomi_challange/core/design_system/themes/app_text_styles.dart';
 import 'package:loomi_challange/core/design_system/themes/app_theme.dart';
 import 'package:loomi_challange/core/design_system/themes/custom_icons.dart';
 import 'package:loomi_challange/core/general_functions/get_formatted_date.dart';
+import 'package:share_plus/share_plus.dart';
 
 class MovieInteract extends StatelessWidget {
   const MovieInteract({super.key, required this.movie});
@@ -63,9 +64,15 @@ class MovieInteract extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
-          IteractionIcon(
-            title: "Gift to someone",
-            icon: CustomIcons.send(),
+          InkWell(
+            onTap: () {
+              Share.share(
+                  'Check out this movie: ${movie.name} - ${movie.synopsis}');
+            },
+            child: IteractionIcon(
+              title: "Gift to someone",
+              icon: CustomIcons.send(),
+            ),
           ),
           const Spacer(),
           Column(

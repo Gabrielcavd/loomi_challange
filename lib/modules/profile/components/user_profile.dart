@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:loomi_challange/core/components/profile_image.dart';
 import 'package:loomi_challange/core/design_system/themes/app_text_styles.dart';
 import 'package:loomi_challange/core/design_system/themes/app_theme.dart';
 
@@ -13,32 +12,12 @@ class UserProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(60),
-          child: photoURL!.isNotEmpty
-              ? Image.file(
-                  errorBuilder: (context, error, stackTrace) =>
-                      const CircleAvatar(
-                    radius: 50,
-                    backgroundColor: AppTheme.palleteGrey,
-                    child: Icon(
-                      Icons.person,
-                      size: 58,
-                    ),
-                  ),
-                  File(photoURL!),
-                  width: 116,
-                  height: 116,
-                  fit: BoxFit.cover,
-                )
-              : const CircleAvatar(
-                  radius: 50,
-                  backgroundColor: AppTheme.palleteGrey,
-                  child: Icon(
-                    Icons.person,
-                    size: 58,
-                  ),
-                ),
+        ProfileImage(
+          photoURL: photoURL!,
+          borderRadius: 55,
+          height: 116,
+          width: 116,
+          iconSize: 40,
         ),
         const SizedBox(width: 15),
         Column(
