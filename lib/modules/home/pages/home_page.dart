@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
                   : const SizedBox(),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20, top: 25),
+              padding: const EdgeInsets.only(left: 20, top: 25),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -51,7 +51,10 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(height: 10),
                   Obx(
                     () => HomeState.loading == controller.state.value
-                        ? const MovieFullLoading()
+                        ? const Padding(
+                            padding: EdgeInsets.only(right: 20),
+                            child: MovieFullLoading(),
+                          )
                         : SizedBox(
                             height: height * 0.77,
                             width: width,

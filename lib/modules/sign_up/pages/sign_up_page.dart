@@ -76,7 +76,9 @@ class SignUpPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 40),
                 SocialLoginButtons(
-                  onTapGoogle: () {},
+                  onTapGoogle: () {
+                    controller.handleGoogleLogin(context);
+                  },
                   onTapApple: () {},
                 ),
                 const SizedBox(height: 40),

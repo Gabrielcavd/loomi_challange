@@ -25,6 +25,14 @@ class ProfileImage extends StatelessWidget {
       child: photoURL.isNotEmpty
           ? isNetworkImage
               ? Image.network(
+                  errorBuilder: (context, error, stackTrace) => CircleAvatar(
+                    radius: borderRadius ?? 20,
+                    backgroundColor: AppTheme.palleteGrey,
+                    child: Icon(
+                      size: iconSize,
+                      Icons.person,
+                    ),
+                  ),
                   photoURL,
                   height: height ?? 40,
                   width: width ?? 40,

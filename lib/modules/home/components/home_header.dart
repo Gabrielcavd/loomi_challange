@@ -8,16 +8,19 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const SizedBox(width: 20),
-        Image.asset(
-          "assets/images/small_logo.png",
-          width: 32,
-        ),
-        ProfileIcon(controller: controller),
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(right: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const SizedBox(width: 20),
+          Image.asset(
+            "assets/images/small_logo.png",
+            width: 32,
+          ),
+          ProfileIcon(controller: controller),
+        ],
+      ),
     );
   }
 }

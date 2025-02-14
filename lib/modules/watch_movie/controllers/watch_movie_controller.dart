@@ -30,14 +30,14 @@ class WatchMovieController extends GetxController {
 
   List<MovieOption> audioOptions = [
     MovieOption(title: "English", isSelected: true),
-    MovieOption(title: "Portuguese", isSelected: true),
+    MovieOption(title: "Portuguese", isSelected: false),
     MovieOption(title: "Spanish", isSelected: false),
   ];
 
   List<MovieOption> subtitleOptions = [
     MovieOption(title: "Off", isSelected: true),
-    MovieOption(title: "English (CC)", isSelected: true),
-    MovieOption(title: "Spanish", isSelected: true),
+    MovieOption(title: "English (CC)", isSelected: false),
+    MovieOption(title: "Spanish", isSelected: false),
     MovieOption(title: "Portuguese", isSelected: false),
   ];
 
@@ -65,8 +65,12 @@ class WatchMovieController extends GetxController {
   }
 
   Future<void> setSubtitles() async {
-    final response = await watchMovieRepository.getSubtitles();
-    subtitles.addAll(response);
+    try {
+      final response = await watchMovieRepository.getSubtitles();
+      subtitles.addAll(response);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   // Future<ClosedCaptionFile> _loadCaptions() async {
@@ -101,6 +105,13 @@ class WatchMovieController extends GetxController {
         showInterface.value = false;
       }
     });
+  }
+
+  @override
+  void onClose() {
+    // TODO: implement onClose
+    super.onClose();
+    videoController.dispose();
   }
 }
 
