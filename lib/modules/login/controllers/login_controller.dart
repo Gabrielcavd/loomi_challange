@@ -21,7 +21,7 @@ class LoginController extends GetxController {
     if (formKey.currentState!.validate()) {
       try {
         loginStateRequest.value = LoginStateRequest.requesting;
-        final user = await _loginRepository.login(
+        await _loginRepository.login(
             emailController.text, passwordController.text);
         loginStateRequest.value = LoginStateRequest.done;
         if (context.mounted) {
@@ -42,8 +42,14 @@ class LoginController extends GetxController {
 
   void handleGoogleLogin(BuildContext context) async {
     try {
-      final user = await _loginRepository.loginWithGoogle();
+      loginStateRequest.value = LoginStateRequest.requesting;
+      await _loginRepository.loginWithGoogle();
+      loginStateRequest.value = LoginStateRequest.done;
+      if (context.mounted) {
+        Navigator.pushReplacementNamed(context, Routes.home);
+      }
     } catch (e) {
+      loginStateRequest.value = LoginStateRequest.error;
       String error = "";
       if (e is FirebaseAuthException) {
         error = e.code;

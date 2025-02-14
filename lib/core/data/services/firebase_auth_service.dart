@@ -79,6 +79,14 @@ class FirebaseAuthService extends GetxController {
     }
   }
 
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await firebaseAuth.sendPasswordResetEmail(email: email.trim());
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<void> updateDisplayName(String displayName) async {
     try {
       await firebaseAuth.currentUser!.updateDisplayName(displayName.trim());

@@ -9,7 +9,8 @@ class LoginBindings extends Bindings {
     Get.lazyPut<LoginRepository>(() => LoginRepository(Get.find(), Get.find()));
     Get.lazyPut<LoginController>(() => LoginController(Get.find()),
         fenix: true);
-    Get.lazyPut<ForgotPasswordController>(() => ForgotPasswordController(),
+    Get.lazyPut<ForgotPasswordController>(
+        () => ForgotPasswordController(Get.find()),
         fenix: true);
   }
 }

@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challange/core/components/page_base.dart';
 import 'package:loomi_challange/core/data/domain/entities/movie.dart';
 import 'package:loomi_challange/core/design_system/themes/app_text_styles.dart';
 import 'package:loomi_challange/core/design_system/themes/app_theme.dart';
 import 'package:loomi_challange/core/resolve_dependences/resolve_dependences.dart';
+import 'package:loomi_challange/modules/home/components/home_header.dart';
 import 'package:loomi_challange/modules/home/components/home_movie.dart';
 import 'package:loomi_challange/modules/home/components/movie_full_loading.dart';
-import 'package:loomi_challange/modules/home/components/movie_player.dart';
 import 'package:loomi_challange/modules/home/controllers/home_controller.dart';
-import 'package:loomi_challange/modules/home/components/profile_icon.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,29 +28,20 @@ class _HomePageState extends State<HomePage> {
       child: PageBase(
         body: Stack(
           children: [
-            Obx(() => controller.videoState.value == HomeState.done
-                ? MoviePlayer(
-                    videoController: controller.videoController!,
-                    blurMovie: true,
-                    zoom: 1.55,
-                  )
-                : const SizedBox()),
+            Obx(
+              () => controller.gradientState.value == HomeState.done
+                  ? Container(
+                      decoration: BoxDecoration(
+                          gradient: controller.backGroundGradient),
+                    )
+                  : const SizedBox(),
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20, top: 25),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const SizedBox(width: 20),
-                      Image.asset(
-                        "assets/images/small_logo.png",
-                        width: 32,
-                      ),
-                      ProfileIcon(controller: controller),
-                    ],
-                  ),
+                  HomeHeader(controller: controller),
                   const SizedBox(height: 20),
                   Text(
                     'Now Showing',
