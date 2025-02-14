@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challange/core/data/domain/entities/movie.dart';
+import 'package:loomi_challange/core/data/domain/entities/subtitle.dart';
 import 'package:loomi_challange/core/data/services/firebase_auth_service.dart';
 import 'package:loomi_challange/core/data/services/internet_service.dart';
 import 'package:loomi_challange/modules/watch_movie/domain/movie_options.dart';
@@ -25,6 +26,8 @@ class WatchMovieController extends GetxController {
   RxBool get internetOff => RxBool(internetService.internetOff);
   final movieIsPlaying = VideoStatus.neutral.obs;
 
+  List<Subtitle> subtitles = [];
+
   List<MovieOption> audioOptions = [
     MovieOption(title: "English", isSelected: true),
     MovieOption(title: "Portuguese", isSelected: true),
@@ -39,22 +42,38 @@ class WatchMovieController extends GetxController {
   ];
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeLeft,
     ]);
-    watchMovieRepository.getSubtitles();
+    setSubtitles();
+    setVideoPlayer();
+  }
+
+  void setVideoPlayer() {
     videoController =
         VideoPlayerController.networkUrl(Uri.parse(movie.streamLink))
           ..initialize().then((_) {
             videoController.setVolume(1);
             videoController.play();
             videoController.setLooping(true);
+            // videoController.setClosedCaptionFile(_loadCaptions());
             videoIsLoading.value = false;
             movieIsPlaying.value = VideoStatus.playing;
           });
   }
+
+  Future<void> setSubtitles() async {
+    final response = await watchMovieRepository.getSubtitles();
+    subtitles.addAll(response);
+  }
+
+  // Future<ClosedCaptionFile> _loadCaptions() async {
+  //   final String fileContents =
+  //       await DefaultAssetBundle.of(Get.context!).loadString(subtitles[0].url);
+  //   return WebVTTCaptionFile(fileContents);
+  // }
 
   void changeAudio(int index) {
     audioOptions[index].isSelected = !audioOptions[index].isSelected;

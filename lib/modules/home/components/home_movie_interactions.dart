@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:loomi_challange/core/data/domain/entities/movie.dart';
 import 'package:loomi_challange/core/design_system/themes/app_text_styles.dart';
 import 'package:loomi_challange/core/design_system/themes/app_theme.dart';
 import 'package:loomi_challange/core/design_system/themes/custom_icons.dart';
 import 'package:loomi_challange/core/general_functions/get_formatted_date.dart';
+import 'package:loomi_challange/core/resolve_dependences/resolve_dependences.dart';
+import 'package:loomi_challange/modules/home/controllers/home_controller.dart';
 import 'package:share_plus/share_plus.dart';
 
 class MovieInteract extends StatelessWidget {
@@ -12,6 +15,7 @@ class MovieInteract extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = getDependency.get<HomeController>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Row(
@@ -37,22 +41,30 @@ class MovieInteract extends StatelessWidget {
                 items: [
                   PopupMenuItem(
                     onTap: null,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        IteractionIcon(
-                            onTap: () {},
-                            title: "I like it",
-                            icon: CustomIcons.like()),
-                        IteractionIcon(
-                            onTap: () {},
-                            title: "It's not for me",
-                            icon: CustomIcons.dislike()),
-                        IteractionIcon(
-                            onTap: () {},
-                            title: "I love it!",
-                            icon: CustomIcons.loveIt()),
-                      ],
+                    child: Obx(
+                      () => Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          IteractionIcon(
+                              onTap: () {
+                                controller.likeMovie();
+                              },
+                              title: "I like it",
+                              icon: controller.likeIcon.value),
+                          IteractionIcon(
+                              onTap: () {
+                                controller.dislikeMovie();
+                              },
+                              title: "It's not for me",
+                              icon: controller.dislikeIcon.value),
+                          IteractionIcon(
+                              onTap: () {
+                                controller.loveMovie();
+                              },
+                              title: "I love it!",
+                              icon: controller.loveIcon.value),
+                        ],
+                      ),
                     ),
                   ),
                 ],

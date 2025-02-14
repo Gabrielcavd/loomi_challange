@@ -4,7 +4,9 @@ import 'package:loomi_challange/core/design_system/themes/app_text_styles.dart';
 import 'package:loomi_challange/core/design_system/themes/app_theme.dart';
 
 class Comment extends StatelessWidget {
-  const Comment({super.key});
+  const Comment({super.key, this.commentWidth, this.commentAcitonWidth});
+  final double? commentWidth;
+  final double? commentAcitonWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class Comment extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          width: size.width * 0.18,
+                          width: commentAcitonWidth ?? size.width * 0.18,
                         ),
                         InkWell(
                           onTap: () {
@@ -70,7 +72,7 @@ class Comment extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      width: size.width * 0.3,
+                      width: commentWidth ?? size.width * 0.3,
                       child: Text(
                         'Lorem ipsum dolor sit asdfasdfasdfasjldhfklasdj',
                         style: AppTextStyles.textStyle(

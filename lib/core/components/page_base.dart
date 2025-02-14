@@ -11,6 +11,7 @@ class PageBase extends StatelessWidget {
   final bool centerTitle;
   final Widget? endDrawer;
   final GlobalKey? scaffoldKey;
+  final bool? resizeToAvoidBottomInset;
 
   const PageBase(
       {super.key,
@@ -22,12 +23,14 @@ class PageBase extends StatelessWidget {
       this.extendBody = false,
       this.centerTitle = true,
       this.endDrawer,
-      this.scaffoldKey});
+      this.scaffoldKey,
+      this.resizeToAvoidBottomInset});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       appBar: enableAppBar == false
           ? null
           : DefaultAppBar(
