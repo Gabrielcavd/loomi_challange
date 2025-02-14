@@ -116,15 +116,17 @@ class SignUpController extends GetxController {
   }
 
   Future<void> pickImage() async {
-    final ImagePicker picker = ImagePicker();
-    try {
-      final image = await picker.pickImage(source: ImageSource.camera);
-      if (image == null) return;
-      File fileTemp = File(image.path);
-      userImage.insert(0, fileTemp);
-    } catch (e) {
-      debugPrint("Erro on picking image $e");
-      rethrow;
+    if (Platform.isAndroid) {
+      final ImagePicker picker = ImagePicker();
+      try {
+        final image = await picker.pickImage(source: ImageSource.camera);
+        if (image == null) return;
+        File fileTemp = File(image.path);
+        userImage.insert(0, fileTemp);
+      } catch (e) {
+        debugPrint("Erro on picking image $e");
+        rethrow;
+      }
     }
   }
 }

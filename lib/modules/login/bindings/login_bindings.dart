@@ -6,7 +6,7 @@ import 'package:loomi_challange/modules/login/repositories/login_repository.dart
 class LoginBindings extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<LoginRepository>(() => LoginRepository(Get.find(), Get.find()));
+    Get.lazyPut<LoginRepository>(() => LoginRepository(Get.find()));
     Get.lazyPut<LoginController>(() => LoginController(Get.find()),
         fenix: true);
     Get.lazyPut<ForgotPasswordController>(

@@ -14,7 +14,7 @@ class UserProfile extends StatelessWidget {
       children: [
         ProfileImage(
           photoURL: photoURL!,
-          borderRadius: 55,
+          borderRadius: 50,
           height: 116,
           width: 116,
           iconSize: 40,

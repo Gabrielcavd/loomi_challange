@@ -57,7 +57,7 @@ class HomeMovieCommentsPage extends StatelessWidget {
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ProfileImage(photoURL: controller.user!.photoURL!),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   SizedBox(
                     height: 40,
                     width: size.width * 0.75,
